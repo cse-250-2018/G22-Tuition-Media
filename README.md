@@ -1,6 +1,6 @@
 # G22-Tuition-Media
 
-Features
+Expected Features
 ----------
 - **Registration** 
   - There will be 2 options for sign up; e.g "Sign up as a tutor" or "Sign up as parent".
