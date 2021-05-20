@@ -23,3 +23,11 @@ Expected Features
 Expected Timeline
 ----------
 ![Gantt_chart](https://user-images.githubusercontent.com/52748765/117638365-92c3f200-b1a4-11eb-8d1f-30f6a5accb06.jpg)
+
+Report in Learning Prerequisites
+------------------------------
+SL | Learning Task | Description | Status | Comment
+--:|:------------- |:----------- | :-----: | ------|
+1 | Android | Basics of Native Android Framework | ![](https://img.shields.io/badge/Android%20Basics-In%20Progress-blue)
+2 | Database | Firebase Basics | ![](https://img.shields.io/badge/Firebase-May%2022-orange) | 2018331004
+3 | Java | Java as Core Language | ![](https://img.shields.io/badge/Java-Completed-green)
