@@ -1,0 +1,2 @@
+rootProject.name = "Tuition Media"
+include ':app'
