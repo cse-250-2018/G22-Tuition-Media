@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "460441599575",
+    "project_id": "tutionmedia-92a7a",
+    "storage_bucket": "tutionmedia-92a7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460441599575:android:2175b88605662ff8efad12",
+        "android_client_info": {
+          "package_name": "com.example.tuitionmedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460441599575-bc5fgpujgufdqturd630n7b4fuutne67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tuitionmedia",
+            "certificate_hash": "36f9afbbd771bf3c6110276e0711279a44fed082"
+          }
+        },
+        {
+          "client_id": "460441599575-9r2tjpm7l9hanbtmr90tojf948vke6re.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaO7dHhUF6JOP4AHHm5lyBCmP3xzAIB0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460441599575-9r2tjpm7l9hanbtmr90tojf948vke6re.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
