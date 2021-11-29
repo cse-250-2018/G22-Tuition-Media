@@ -4,5 +4,5 @@ class Tutor {
   var subject;
   var gender;
 
-  Tutor({required this.tutorsName, this.dept, this.gender, this.subject});
+  Tutor({required this.tutorsName, this.dept, this.gender, this.subject  } );
 }
