@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tuitionmedia/homepage.dart';
 import 'package:tuitionmedia/parent_registration.dart';
@@ -12,6 +13,15 @@ class ParentLogin extends StatefulWidget {
 }
 
 class _ParentLoginState extends State<ParentLogin> {
+  //form key
+  final _formKey = GlobalKey<FormState>();
+
+  //editing controller
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  set emailField(TextFormField emailField) {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +42,8 @@ class _ParentLoginState extends State<ParentLogin> {
       ),
       body: SingleChildScrollView(
         child: Stack(
+          //newly added
+          key: _formKey,
           children: [
             Center(
               child: Container(
@@ -41,10 +53,17 @@ class _ParentLoginState extends State<ParentLogin> {
                       left: 35),
                   child: Column(
                     children: [
-                      const TextField(
-                        decoration: InputDecoration(
-                          // fillColor: Colors.grey,
-                          //filled:true,
+                      emailField = TextFormField(
+                        autofocus: false,
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        onSaved: (value) {
+                          emailController.text = value!;
+                          debugPrint(emailController.text);
+                        },
+                        textInputAction: TextInputAction.next,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.mail),
                           hintText: 'Email',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -55,11 +74,11 @@ class _ParentLoginState extends State<ParentLogin> {
                       const SizedBox(
                         height: 30,
                       ),
-                      const TextField(
+                       TextField(
                         obscureText: true,
-                        decoration: InputDecoration(
-                          // fillColor: Colors.grey,
-                          //filled:true,
+                        controller: passwordController,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.vpn_key),
                           hintText: 'password',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -73,16 +92,23 @@ class _ParentLoginState extends State<ParentLogin> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          OutlinedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const Homepage()),
-                               );
+                                MaterialPageRoute(
+                                    builder: (context) => const Homepage()),
+                              );
                             },
-                            style: const ButtonStyle(),
+                            style: ElevatedButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20),
+                              primary: Colors.black12, //background
+                              onPrimary: Colors.white, //foreground
+                              
+                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                            
+                            ),
                             child: (const Text('Log In as Parent')),
-
                           )
                         ],
                       ),
@@ -97,8 +123,7 @@ class _ParentLoginState extends State<ParentLogin> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const TutorLogin()),
+                                    builder: (context) => const TutorLogin()),
                               );
                             },
                             child: const Text(

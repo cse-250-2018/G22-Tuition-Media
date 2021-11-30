@@ -41,6 +41,7 @@ class _TutorLoginState extends State<TutorLogin> {
                     children: [
                       const TextField(
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.mail),
                           // fillColor: Colors.grey,
                           //filled:true,
                           hintText: 'Email',
@@ -51,11 +52,13 @@ class _TutorLoginState extends State<TutorLogin> {
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 50,
                       ),
                       const TextField(
                         obscureText: true,
                         decoration: InputDecoration(
+                          //new
+                          prefixIcon: Icon(Icons.vpn_key),
                           // fillColor: Colors.grey,
                           //filled:true,
                           hintText: 'password',
@@ -66,19 +69,26 @@ class _TutorLoginState extends State<TutorLogin> {
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
+                        height: 50,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          OutlinedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => const TutorsProfile()),
                                );
                             },
-                            style: const ButtonStyle(),
+                            style: ElevatedButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20),
+                              primary: Colors.black12, //background
+                              onPrimary: Colors.white, //foreground
+                              
+                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                            
+                            ),
                             child: (const Text('Log In as Tutor')),
                           )
                         ],

@@ -9,6 +9,7 @@ class ParentRegistration extends StatefulWidget {
 }
 
 class _ParentRegistrationState extends State<ParentRegistration> {
+  
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -53,7 +54,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                       ),
                       const TextField(
                         decoration: InputDecoration(
-                          
+                          prefixIcon: Icon(Icons.mail),
                           hintText: 'Gmail',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -66,7 +67,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                       ),
                       const TextField(
                         decoration: InputDecoration(
-                          
+                          prefixIcon: Icon(Icons.mail),
                           hintText:'Referred SUST Mail',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -94,6 +95,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                       const TextField(
                         obscureText: true,
                         decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.vpn_key),
                           // fillColor: Colors.grey,
                           //filled:true,
                           hintText: 'password',
@@ -109,14 +111,21 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          OutlinedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => const ParentLogin()),
                                );
                             },
-                            style: const ButtonStyle(),
+                            style: ElevatedButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20),
+                              primary: Colors.black12, //background
+                              onPrimary: Colors.white, //foreground
+                              
+                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                            
+                            ),
                             child: (const Text('Register as Parent')),
                           )
                         ],
