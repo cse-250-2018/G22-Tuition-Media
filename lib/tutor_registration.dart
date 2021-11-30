@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tuitionmedia/tutor_login.dart';
 
@@ -9,6 +10,17 @@ class TutorRegistration extends StatefulWidget {
 }
 
 class _TutorRegistrationState extends State<TutorRegistration> {
+
+  final _formkey = GlobalKey<FormState>();
+
+//editing controller
+  final  nameController = TextEditingController();
+  final  emailController = TextEditingController();
+   final  deptController = TextEditingController();
+  final  registrationController = TextEditingController();
+   final  passwordController = TextEditingController();
+  final  confirmpasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +37,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
             ),
           ),
         ),
-        toolbarHeight: 150,
+        toolbarHeight: 130,
       ),
       body:SingleChildScrollView(
         child: Stack(
@@ -33,14 +45,15 @@ class _TutorRegistrationState extends State<TutorRegistration> {
             Center(
               child: Container(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.1,
+                      top: MediaQuery.of(context).size.height * 0.05,
                       right: 35,
                       left: 35),
                   child: Column(
                     children: [
-                      const TextField(
-                        decoration: InputDecoration(
-                          
+                       TextField(
+                        controller: nameController,
+                        decoration:const InputDecoration(
+                          prefixIcon: Icon(Icons.account_circle),
                           hintText: 'Name ',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -51,9 +64,10 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       const SizedBox(
                         height: 30,
                       ),
-                      const TextField(
-                        decoration: InputDecoration(
-                          
+                       TextField(
+                        controller: emailController,
+                        decoration:const InputDecoration(
+                          prefixIcon: Icon(Icons.mail),
                           hintText: 'SUST Mail',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -64,9 +78,10 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       const SizedBox(
                         height: 30,
                       ),
-                      const TextField(
-                        decoration: InputDecoration(
-                          
+                       TextField(
+                        controller: deptController,
+                        decoration: const InputDecoration(
+                        
                           hintText: 'Department',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -77,8 +92,9 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       const SizedBox(
                         height: 30,
                       ),
-                      const TextField(
-                        decoration: InputDecoration(
+                       TextField(
+                        controller: registrationController,
+                        decoration:const InputDecoration(
                           
                           hintText: 'Registration Number',
                           border: OutlineInputBorder(
@@ -91,11 +107,27 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         height: 30,
                       ),
                       
-                      const TextField(
+                       TextField(
                         obscureText: true,
-                        decoration: InputDecoration(
-                          
+                        controller: passwordController,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.vpn_key),
                           hintText: 'password',
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20.0)),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                       TextField(
+                        obscureText: true,
+                        controller: confirmpasswordController,
+                        decoration:const InputDecoration(
+                          prefixIcon: Icon(Icons.vpn_key),
+                          hintText: 'confirm password',
                           border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
@@ -108,14 +140,21 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          OutlinedButton(
+                          ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) =>const TutorLogin()),
                                );
                             },
-                            style: const ButtonStyle(),
+                            style: ElevatedButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20),
+                              primary: Colors.black12, //background
+                              onPrimary: Colors.white, //foreground
+                              
+                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                            
+                            ),
                             child: (const Text('Register as Tutor')),
                           )
                         ],
