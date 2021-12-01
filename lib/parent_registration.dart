@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tuitionmedia/parent_login.dart';
 
 class ParentRegistration extends StatefulWidget {
-  const ParentRegistration({ Key? key }) : super(key: key);
+  const ParentRegistration({Key? key}) : super(key: key);
 
   @override
   _ParentRegistrationState createState() => _ParentRegistrationState();
@@ -11,9 +11,9 @@ class ParentRegistration extends StatefulWidget {
 class _ParentRegistrationState extends State<ParentRegistration> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: Colors.blue[100],
-       appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.blue[100],
         title: const Center(
           child: Text(
@@ -27,7 +27,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         ),
         toolbarHeight: 150,
       ),
-       body:SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Stack(
           children: [
             Center(
@@ -40,7 +40,6 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                     children: [
                       const TextField(
                         decoration: InputDecoration(
-                          
                           hintText: 'Parent Name ',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -53,7 +52,6 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                       ),
                       const TextField(
                         decoration: InputDecoration(
-                          
                           hintText: 'Gmail',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -66,8 +64,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                       ),
                       const TextField(
                         decoration: InputDecoration(
-                          
-                          hintText:'Referred SUST Mail',
+                          hintText: 'Referred SUST Mail',
                           border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
@@ -79,7 +76,6 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                       ),
                       const TextField(
                         decoration: InputDecoration(
-                          
                           hintText: 'Mobile Number',
                           border: OutlineInputBorder(
                             borderRadius:
@@ -90,7 +86,6 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                       const SizedBox(
                         height: 30,
                       ),
-                      
                       const TextField(
                         obscureText: true,
                         decoration: InputDecoration(
@@ -113,22 +108,21 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const ParentLogin()),
-                               );
+                                MaterialPageRoute(
+                                    builder: (context) => const ParentLogin()),
+                              );
                             },
                             style: const ButtonStyle(),
                             child: (const Text('Register as Parent')),
                           )
                         ],
                       ),
-                      
-                      
                     ],
                   )),
             )
           ],
         ),
-        ),
+      ),
     );
   }
 }

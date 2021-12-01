@@ -1,8 +1,14 @@
 class Tutor {
-  late String tutorsName;
-  var dept;
-  var subject;
-  var gender;
+  final String tutorsName;
+  final dept;
+  final List<String> subject;
+  final gender;
+  bool interested;
 
-  Tutor({required this.tutorsName, this.dept, this.gender, this.subject  } );
+  Tutor(
+      {required this.tutorsName,
+      required this.dept,
+      required this.gender,
+      required this.subject,
+      required this.interested});
 }

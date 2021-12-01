@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tuitionmedia/homepage.dart';
 import 'package:tuitionmedia/parent_registration.dart';
+import 'package:tuitionmedia/screens/tutors_list.dart';
 import 'package:tuitionmedia/tutor_login.dart';
 import 'package:tuitionmedia/tutor_registration.dart';
 
@@ -28,7 +29,7 @@ class _ParentLoginState extends State<ParentLogin> {
             ),
           ),
         ),
-        toolbarHeight: 150,
+        // toolbarHeight: 150,
       ),
       body: SingleChildScrollView(
         child: Stack(
@@ -77,12 +78,12 @@ class _ParentLoginState extends State<ParentLogin> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const Homepage()),
-                               );
+                                MaterialPageRoute(
+                                    builder: (context) => const Homepage()),
+                              );
                             },
                             style: const ButtonStyle(),
                             child: (const Text('Log In as Parent')),
-
                           )
                         ],
                       ),
@@ -97,8 +98,7 @@ class _ParentLoginState extends State<ParentLogin> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const TutorLogin()),
+                                    builder: (context) => const TutorLogin()),
                               );
                             },
                             child: const Text(
@@ -148,6 +148,22 @@ class _ParentLoginState extends State<ParentLogin> {
                             },
                             child: const Text(
                               'Register as Tutor',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const TutorList(),
+                                  ));
+                            },
+                            child: const Text(
+                              'See Tutors',
                               style: TextStyle(
                                   fontSize: 20,
                                   fontStyle: FontStyle.italic,

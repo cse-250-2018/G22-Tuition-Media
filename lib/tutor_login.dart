@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tuitionmedia/tutors_profile.dart';
 
 class TutorLogin extends StatefulWidget {
-  const TutorLogin({ Key? key }) : super(key: key);
+  const TutorLogin({Key? key}) : super(key: key);
 
   @override
   _TutorLoginState createState() => _TutorLoginState();
@@ -13,7 +13,7 @@ class _TutorLoginState extends State<TutorLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[100],
-       appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.blue[100],
         title: const Center(
           child: Text(
@@ -27,9 +27,8 @@ class _TutorLoginState extends State<TutorLogin> {
         ),
         toolbarHeight: 150,
       ),
-      body:SingleChildScrollView(
-        child: 
-           Stack(
+      body: SingleChildScrollView(
+        child: Stack(
           children: [
             Center(
               child: Container(
@@ -58,7 +57,7 @@ class _TutorLoginState extends State<TutorLogin> {
                         decoration: InputDecoration(
                           // fillColor: Colors.grey,
                           //filled:true,
-                          hintText: 'password',
+                          hintText: 'Password',
                           border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
@@ -75,22 +74,22 @@ class _TutorLoginState extends State<TutorLogin> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => const TutorsProfile()),
-                               );
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const TutorsProfile()),
+                              );
                             },
                             style: const ButtonStyle(),
                             child: (const Text('Log In as Tutor')),
                           )
                         ],
                       ),
-                      
-                      
                     ],
                   )),
             )
           ],
         ),
-      
-    ),);
+      ),
+    );
   }
 }
