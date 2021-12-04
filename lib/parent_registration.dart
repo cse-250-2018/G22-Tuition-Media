@@ -48,6 +48,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         toolbarHeight: 150,
       ),
       body: SingleChildScrollView(
+
         child: Form(
           key: _formkey,
           child: Stack(
@@ -266,10 +267,12 @@ class _ParentRegistrationState extends State<ParentRegistration> {
               )
             ],
           ),
+
         ),
       ),
     );
   }
+
 
   void signUp(String email, String password) async {
     try{
@@ -325,4 +328,5 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         MaterialPageRoute(builder: (context) => const ParentLogin()),
         (route) => false);
   }
+
 }

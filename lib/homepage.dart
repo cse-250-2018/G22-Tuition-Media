@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 class Homepage extends StatefulWidget {
-  const Homepage({ Key? key }) : super(key: key);
+  const Homepage({Key? key}) : super(key: key);
 
   @override
   _HomepageState createState() => _HomepageState();
