@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tuitionmedia/parent_login.dart';
 
 // ignore: prefer_const_constructors
-Future<void> main() async
-{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());

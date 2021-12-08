@@ -23,6 +23,7 @@ class TutorScreen extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/model/tutor_model.dart';
+import 'package:tuitionmedia/services/auth.dart';
 import 'package:tuitionmedia/tutor_login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -213,15 +214,25 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                               onPressed: () {
                                 try {
                                   Fluttertoast.showToast(
-                                    msg: "Wait for a While",
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.green,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
-                                  signUp2(sustMailController.text,
-                                      tutorPasswordController.text);
+                                      msg: "Wait for a While",
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.green,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+                                  AuthService().registerWithEmailPass(
+                                      sustMailController.text,
+                                      tutorPasswordController.text,
+                                      tutorNameController.text,
+                                      registrationNoController.text,
+                                      deptController.text);
+                                  Navigator.pushAndRemoveUntil(
+                                      (context),
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const TutorLogin()),
+                                      (route) => false);
                                 } catch (e) {
                                   Fluttertoast.showToast(
                                       msg: "Some credential maybe misformated",
@@ -255,44 +266,33 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     );
   }
 
-  void signUp2(String email, String password) async {
-    if (_formkey.currentState()!.validate()) {
-      await _auth
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsFirestoreForTutor()})
-          .catchError((e) {
-        Fluttertoast.showToast(msg: e!.message);
-      });
-    }
-  }
+  // postDetailsFirestoreForTutor() async {
+  //   //calling firestore
+  //   //calling user model
+  //   //calling these values
 
-  postDetailsFirestoreForTutor() async {
-    //calling firestore
-    //calling user model
-    //calling these values
+  //   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  //   User? user = _auth.currentUser;
 
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    User? user = _auth.currentUser;
+  //   TutorModel tutorModel = TutorModel();
 
-    TutorModel tutorModel = TutorModel();
+  //   //writing all the values
+  //   tutorModel.sustMail = user!.email;
+  //   tutorModel.uid = user.uid;
+  //   tutorModel.tutorName = tutorNameController.text;
+  //   tutorModel.dept = deptController.text;
+  //   tutorModel.registrationNumber = registrationNoController.text;
 
-    //writing all the values
-    tutorModel.sustMail = user!.email;
-    tutorModel.uid2 = user.uid;
-    tutorModel.tutorName = tutorNameController.text;
-    tutorModel.dept = deptController.text;
-    tutorModel.registrationNumber = registrationNoController.text;
+  //   await firebaseFirestore
+  //       .collection("tutors")
+  //       .doc(user.uid)
+  //       .set(tutorModel.toMap());
 
-    await firebaseFirestore
-        .collection("tutors")
-        .doc(user.uid)
-        .set(tutorModel.toMap());
+  //   Fluttertoast.showToast(msg: "account created successfully");
 
-    Fluttertoast.showToast(msg: "account created successfully");
-
-    Navigator.pushAndRemoveUntil(
-        (context),
-        MaterialPageRoute(builder: (context) => const TutorLogin()),
-        (route) => false);
-  }
+  //   Navigator.pushAndRemoveUntil(
+  //       (context),
+  //       MaterialPageRoute(builder: (context) => const TutorLogin()),
+  //       (route) => false);
+  // }
 }

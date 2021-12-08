@@ -77,10 +77,10 @@ class _ParentLoginState extends State<ParentLogin> {
                           OutlinedButton(
                             onPressed: () {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Homepage()),
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const TutorList(),
+                                  ));
                             },
                             style: const ButtonStyle(),
                             child: (const Text('Log In as Parent')),
