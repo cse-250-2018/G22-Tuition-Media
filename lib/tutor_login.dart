@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:tuitionmedia/tutors_profile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -22,9 +24,9 @@ class _TutorLoginState extends State<TutorLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.teal[300],
       appBar: AppBar(
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.teal[300],
         title: const Center(
           child: Text(
             'Login as Tutor',
@@ -118,8 +120,10 @@ class _TutorLoginState extends State<TutorLogin> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
+                                SharedPreferences pref= await SharedPreferences.getInstance();
                                 Fluttertoast.showToast(
+
                                     msg: "Wait for a While",
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.CENTER,
@@ -127,14 +131,15 @@ class _TutorLoginState extends State<TutorLogin> {
                                     backgroundColor: Colors.green[400],
                                     textColor: Colors.white,
                                     fontSize: 16.0);
+                                    pref.setString("email", sustmailControllerlogin.text);
                                 signIn2(sustmailControllerlogin.text,
                                     passwordControllertutor.text);
+                                
                               },
                               style: ElevatedButton.styleFrom(
                                 textStyle: const TextStyle(fontSize: 20),
                                 primary: Colors.black12, //background
                                 onPrimary: Colors.white, //foreground
-
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 30),
                               ),

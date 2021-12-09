@@ -32,9 +32,9 @@ class _ParentRegistrationState extends State<ParentRegistration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.green[300],
       appBar: AppBar(
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.green[300],
         title: const Center(
           child: Text(
             'Register as Parent',
@@ -55,7 +55,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
               Center(
                 child: Container(
                     padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1,
+                        top: MediaQuery.of(context).size.height * 0.05,
                         right: 35,
                         left: 35),
                     child: Column(
@@ -260,6 +260,9 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                               child: (const Text('Register as Parent')),
                             )
                           ],
+                        ),
+                        const SizedBox(
+                          height: 30,
                         ),
                       ],
                     )),

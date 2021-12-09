@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:tuitionmedia/initial_scene.dart';
 import 'package:tuitionmedia/parent_login.dart';
 
 // ignore: prefer_const_constructors
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home :const SplashScreen(),
       routes:{
-        'ParentLogin': (context)=> const ParentLogin()
+        'initialscene': (context)=> const InitialScene()
       }
     );
   }
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void startTimer(){
     Timer(const Duration(seconds: 2),(){
-      Navigator.of(context).pushReplacementNamed('ParentLogin');
+      Navigator.of(context).pushReplacementNamed('initialscene');
     });
   }
   @override

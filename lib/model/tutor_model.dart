@@ -4,8 +4,9 @@ class TutorModel{
   String? tutorName;
   String? registrationNumber;
   String? dept;
+  String ? gender;
 
-  TutorModel({this.uid2,this.sustMail,this.tutorName,this.registrationNumber,this.dept});
+  TutorModel({this.uid2,this.sustMail,this.tutorName,this.registrationNumber,this.dept,this.gender});
 
   //receiving data from server
   factory TutorModel.fromMap(map){
@@ -15,6 +16,7 @@ class TutorModel{
       tutorName: map['tutorName'],
       dept: map['dept'],
       registrationNumber: map['registrationNumber'],
+      gender: map['gender'],
 
     );
   }
@@ -28,6 +30,7 @@ class TutorModel{
       'tutorName':tutorName,
       'dept':dept,
       'registrationNumber':registrationNumber,
+      'gender': gender,
 
     };
   }

@@ -24,13 +24,14 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   final registrationNoController = TextEditingController();
   final tutorPasswordController = TextEditingController();
   final tutorConfirmpasswordController = TextEditingController();
+  final genderController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.teal[300],
       appBar: AppBar(
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.teal[300],
         title: const Center(
           child: Text(
             'Register as Tutor',
@@ -143,6 +144,24 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           },
                           decoration: const InputDecoration(
                             hintText: 'Registration Number',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                         TextFormField(
+                          controller: genderController,
+                          keyboardType: TextInputType.name,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            deptController.text = value!;
+                          },
+                          decoration: const InputDecoration(
+                            hintText: 'Tutor\'s Gender',
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
@@ -282,6 +301,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     tutorModel.tutorName = tutorNameController.text;
     tutorModel.dept = deptController.text;
     tutorModel.registrationNumber = registrationNoController.text;
+    tutorModel.gender=genderController.text;
 
     await firebaseFirestore
         .collection("tutors")

@@ -28,12 +28,12 @@ class _ParentLoginState extends State<ParentLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.green[300],
       appBar: AppBar(
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.green[300],
         title: const Center(
           child: Text(
-            'Welcome to Tuition Media',
+            'Parent\'s Login',
             style: TextStyle(
               fontSize: 25,
               fontStyle: FontStyle.italic,
@@ -150,72 +150,8 @@ class _ParentLoginState extends State<ParentLogin> {
                         const SizedBox(
                           height: 30,
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const TutorLogin()),
-                                );
-                              },
-                              child: const Text(
-                                'Log In as Tutor',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ParentRegistration()),
-                                );
-                              },
-                              child: const Align(
-                                alignment: Alignment.bottomRight,
-                                child: Text(
-                                  'Register as Parent',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const TutorRegistration()),
-                                );
-                              },
-                              child: const Text(
-                                'Register as Tutor',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          ],
-                        ),
+                        
+                            
                       ],
                     )),
               )
