@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/model/tutor_model.dart';
 import 'package:tuitionmedia/tutor_login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tuitionmedia/verifytutor.dart';
 
 class TutorRegistration extends StatefulWidget {
   const TutorRegistration({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   final tutorPasswordController = TextEditingController();
   final tutorConfirmpasswordController = TextEditingController();
   final genderController = TextEditingController();
+  final tutorsMobilenoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -124,8 +126,10 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             deptController.text = value!;
                           },
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.house_outlined),
                             hintText: 'Tutor\'s Department',
                             border: OutlineInputBorder(
+                              
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
                             ),
@@ -143,7 +147,29 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             //debugPrint(emailController.text);
                           },
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.keyboard),
                             hintText: 'Registration Number',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          controller: tutorsMobilenoController,
+                          
+                          keyboardType: TextInputType.number,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            registrationNoController.text = value!;
+                            
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.call_rounded),
+                            hintText: 'Mobile number',
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
@@ -161,6 +187,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             deptController.text = value!;
                           },
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.perm_identity),
                             hintText: 'Tutor\'s Gender',
                             border: OutlineInputBorder(
                               borderRadius:
@@ -264,6 +291,9 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             )
                           ],
                         ),
+                        const SizedBox(
+                          height: 30,
+                        )
                       ],
                     )),
               )
@@ -301,18 +331,19 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     tutorModel.tutorName = tutorNameController.text;
     tutorModel.dept = deptController.text;
     tutorModel.registrationNumber = registrationNoController.text;
-    tutorModel.gender=genderController.text;
+    tutorModel.gender = genderController.text;
+    tutorModel.mobileno = tutorsMobilenoController.text;
 
     await firebaseFirestore
         .collection("tutors")
         .doc(user.uid)
         .set(tutorModel.toMap());
 
-    Fluttertoast.showToast(msg: "account created successfully");
+    //Fluttertoast.showToast(msg: "account created successfully");
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => const TutorLogin()),
+        MaterialPageRoute(builder: (context) => const SustMailVerify()),
         (route) => false);
   }
 }

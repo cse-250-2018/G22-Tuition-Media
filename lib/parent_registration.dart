@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/homepage.dart';
 import 'package:tuitionmedia/model/user_model.dart';
 import 'package:tuitionmedia/parent_login.dart';
+import 'package:tuitionmedia/verify.dart';
 
 
 class ParentRegistration extends StatefulWidget {
@@ -137,6 +138,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                             }
                             return null;
                           },
+
                           onSaved: (value) {
                             refferedsustmailController.text = value!;
                             //debugPrint(emailController.text);
@@ -163,6 +165,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                             //debugPrint(emailController.text);
                           },
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.call_rounded),
                             hintText: 'Mobile Number',
                             border: OutlineInputBorder(
                               borderRadius:
@@ -321,11 +324,11 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         .doc(user.uid)
         .set(userModel.toMap());
 
-    Fluttertoast.showToast(msg: "account created successfully");
+    //Fluttertoast.showToast(msg: "account created successfully");
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => const ParentLogin()),
+        MaterialPageRoute(builder: (context) => const VerifyScreen()),
         (route) => false);
   }
 }
