@@ -38,7 +38,6 @@ class _TutorLoginState extends State<TutorLogin> {
         toolbarHeight: 150,
       ),
       body: SingleChildScrollView(
-
         child: Form(
           key: _formKey2,
           child: Stack(
@@ -51,8 +50,8 @@ class _TutorLoginState extends State<TutorLogin> {
                         left: 35),
                     child: Column(
                       children: [
-                         TextFormField(
-                           autofocus: false,
+                        TextFormField(
+                          autofocus: false,
                           keyboardType: TextInputType.emailAddress,
                           controller: sustmailControllerlogin,
                           validator: (value) {
@@ -87,7 +86,7 @@ class _TutorLoginState extends State<TutorLogin> {
                         TextFormField(
                           obscureText: true,
                           controller: passwordControllertutor,
-                           validator: (value) {
+                          validator: (value) {
                             RegExp regex = RegExp(r'^.{6,}$');
                             if (value!.isEmpty) {
                               return ("Password is required for login");
@@ -101,7 +100,6 @@ class _TutorLoginState extends State<TutorLogin> {
                           },
                           textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(
-                          
                             prefixIcon: Icon(Icons.vpn_key),
                             // fillColor: Colors.grey,
                             //filled:true,
@@ -155,8 +153,8 @@ class _TutorLoginState extends State<TutorLogin> {
 
   void signIn2(String email, String password) async {
     try {
-      if (_formKey2.currentState() != null &&
-          _formKey2.currentState()!.validate()) {
+      if (_formKey2.currentState != null &&
+          _formKey2.currentState!.validate()) {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid2) => {

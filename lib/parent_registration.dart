@@ -9,7 +9,6 @@ import 'package:tuitionmedia/homepage.dart';
 import 'package:tuitionmedia/model/user_model.dart';
 import 'package:tuitionmedia/parent_login.dart';
 
-
 class ParentRegistration extends StatefulWidget {
   const ParentRegistration({Key? key}) : super(key: key);
 
@@ -48,7 +47,6 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         toolbarHeight: 150,
       ),
       body: SingleChildScrollView(
-
         child: Form(
           key: _formkey,
           child: Stack(
@@ -267,26 +265,22 @@ class _ParentRegistrationState extends State<ParentRegistration> {
               )
             ],
           ),
-
         ),
       ),
     );
   }
 
-
   void signUp(String email, String password) async {
-    try{
- if (_formkey.currentState()!.validate()) {
-      await _auth
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsFirestore()})
-          .catchError((e) {
-        Fluttertoast.showToast(msg: e!.message);
-      });
-    }
-    }
-    catch(e)
-    {
+    try {
+      if (_formkey.currentState!.validate()) {
+        await _auth
+            .createUserWithEmailAndPassword(email: email, password: password)
+            .then((value) => {postDetailsFirestore()})
+            .catchError((e) {
+          Fluttertoast.showToast(msg: e!.message);
+        });
+      }
+    } catch (e) {
       Fluttertoast.showToast(
           msg: "you have gave wrong information",
           toastLength: Toast.LENGTH_LONG,
@@ -296,7 +290,6 @@ class _ParentRegistrationState extends State<ParentRegistration> {
           textColor: Colors.white,
           fontSize: 16.0);
     }
-   
   }
 
   postDetailsFirestore() async {
@@ -328,5 +321,4 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         MaterialPageRoute(builder: (context) => const ParentLogin()),
         (route) => false);
   }
-
 }

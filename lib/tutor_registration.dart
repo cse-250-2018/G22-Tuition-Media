@@ -213,13 +213,13 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                               onPressed: () {
                                 try {
                                   Fluttertoast.showToast(
-                                    msg: "Wait for a While",
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.green,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                                      msg: "Wait for a While",
+                                      toastLength: Toast.LENGTH_LONG,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.green,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
                                   signUp2(sustMailController.text,
                                       tutorPasswordController.text);
                                 } catch (e) {
@@ -256,7 +256,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   }
 
   void signUp2(String email, String password) async {
-    if (_formkey.currentState()!.validate()) {
+    if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {postDetailsFirestoreForTutor()})
