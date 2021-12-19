@@ -52,76 +52,78 @@ class Homepage extends StatelessWidget {
                         itemCount: data.size,
                         itemBuilder: (context, index) {
                           //return Text(' ${data.docs[index]['tutorName']} and mobileno ${data.docs[index]['mobileno']}');
-                          return Container(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Tutor\'s Name :  ${data.docs[index]['tutorName']}',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
+                          return SingleChildScrollView(
+                            child: Container(
+                                child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Tutor\'s Name :  ${data.docs[index]['tutorName']}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Tutor\'s Department :  ${data.docs[index]['dept']}',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
+                                const SizedBox(
+                                  height: 5,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Tutor\'s Gender :  ${data.docs[index]['gender']}',
-                                style: const TextStyle(
-                                  fontSize: 20,
+                                Text(
+                                  'Tutor\'s Department :  ${data.docs[index]['dept']}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Tutor\'s Mail :  ${data.docs[index]['sustMail']}',
-                                style: const TextStyle(
-                                  fontSize: 20,
+                                const SizedBox(
+                                  height: 5,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              
-                              Row(
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () async {
-                                      //call feature
-                                       var number =
-                                           '${data.docs[index]['mobileno']}'; //set the number here
-                                      bool? res = await FlutterPhoneDirectCaller
-                                          .callNumber(number);
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      textStyle: const TextStyle(fontSize: 20),
-                                      primary: Colors.black12, //background
-                                      onPrimary: Colors.white, //foreground
+                                Text(
+                                  'Tutor\'s Gender :  ${data.docs[index]['gender']}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Tutor\'s Mail :  ${data.docs[index]['sustMail']}',
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                
+                                Row(
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        //call feature
+                                         var number =
+                                             '${data.docs[index]['mobileno']}'; //set the number here
+                                        bool? res = await FlutterPhoneDirectCaller
+                                            .callNumber(number);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        textStyle: const TextStyle(fontSize: 20),
+                                        primary: Colors.black12, //background
+                                        onPrimary: Colors.white, //foreground
 
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30),
-                                    ),
-                                    child: (const Text('Call Tutor')),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 30,
-                              ),
-                            ],
-                          ));
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 30),
+                                      ),
+                                      child: (const Text('Call Tutor')),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                              ],
+                            )),
+                          );
                         },
                       );
                     }
