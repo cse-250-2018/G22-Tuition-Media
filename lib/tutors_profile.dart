@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -13,27 +15,43 @@ class TutorsProfile extends StatefulWidget {
 class _TutorsProfileState extends State<TutorsProfile> {
   @override
   Widget build(BuildContext context) {
+    
+        
     return Scaffold(
       backgroundColor: Colors.teal,
-      
-      body:Container(
-
-      ),
-      /*body: (ElevatedButton(
-        onPressed: () async{
-          //call feature
-          const number = '01750829140'; //set the number here
-         bool? res = await FlutterPhoneDirectCaller.callNumber(number);
-        },
-        style: ElevatedButton.styleFrom(
-          textStyle: const TextStyle(fontSize: 20),
-          primary: Colors.black12, //background
-          onPrimary: Colors.white, //foreground
-
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+      appBar: AppBar(
+        backgroundColor: Colors.brown,
+        title: const Center(
+          child: Text(
+            'Your Profile ',
+            style: TextStyle(
+              fontSize: 25,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-        child: (const Text('call')),
-      )),*/
+        toolbarHeight: 60,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+
+            children: const [
+              Text(
+                'Here will be all data of this Tutor  ',
+            style: TextStyle(
+              fontSize: 25,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.bold,
+              )
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
