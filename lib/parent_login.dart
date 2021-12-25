@@ -6,6 +6,7 @@ import 'package:tuitionmedia/parent_registration.dart';
 import 'package:tuitionmedia/retrive.dart';
 import 'package:tuitionmedia/tutor_login.dart';
 import 'package:tuitionmedia/tutor_registration.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ParentLogin extends StatefulWidget {
   const ParentLogin({Key? key}) : super(key: key);
@@ -29,20 +30,19 @@ class _ParentLoginState extends State<ParentLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[300],
+      backgroundColor: Colors.brown[50],
       appBar: AppBar(
-        backgroundColor: Colors.green[300],
-        title: const Center(
-          child: Text(
-            'Parent\'s Login',
-            style: TextStyle(
-              fontSize: 25,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold,
-            ),
+        backgroundColor: Colors.brown[900],
+        title: const Text(
+          'Login as Parent',
+          style: TextStyle(
+            fontSize: 25,
+            // fontStyle: FontStyle.italic,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.bold,
           ),
         ),
-        toolbarHeight: 150,
+        toolbarHeight: 90,
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -60,17 +60,17 @@ class _ParentLoginState extends State<ParentLogin> {
                     child: Column(
                       children: [
                         emailField = TextFormField(
-                          autofocus: false,
+                          // autofocus: false,
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              "please enter your emamil";
+                              "Please enter your email";
                             }
                             if (!RegExp(
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
-                              return (" please Enter a valid Email");
+                              return ("Please enter a valid email");
                             }
                             return null;
                           },
@@ -81,10 +81,10 @@ class _ParentLoginState extends State<ParentLogin> {
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.mail),
-                            hintText: 'Email: name@gmail.com',
+                            hintText: 'Email',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -100,7 +100,7 @@ class _ParentLoginState extends State<ParentLogin> {
                               return ("Password is required for login");
                             }
                             if (!regex.hasMatch(value)) {
-                              return ("Enter valid Password(Min. 6 Character)");
+                              return ("Enter a valid password (Min. 6 Character)");
                             }
                           },
                           onSaved: (value) {
@@ -109,15 +109,15 @@ class _ParentLoginState extends State<ParentLogin> {
                           textInputAction: TextInputAction.done,
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.vpn_key),
-                            hintText: 'password',
+                            hintText: 'Password',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
                         const SizedBox(
-                          height: 30,
+                          height: 150,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -127,22 +127,21 @@ class _ParentLoginState extends State<ParentLogin> {
                                 Fluttertoast.showToast(
                                     msg: "Wait for a While",
                                     toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.CENTER,
+                                    // gravity: ToastGravity.CENTER,
                                     timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.green[400],
+                                    //  backgroundColor: Colors.blueGrey,
                                     textColor: Colors.white,
                                     fontSize: 16.0);
-                                  signIn(emailController.text,
-                                      passwordController.text);
-                                
+                                signIn(emailController.text,
+                                    passwordController.text);
                               },
                               style: ElevatedButton.styleFrom(
-                                textStyle: const TextStyle(fontSize: 20),
-                                primary: Colors.black12, //background
+                                textStyle: const TextStyle(fontSize: 17),
+                                primary: Colors.brown[700], //background
                                 onPrimary: Colors.white, //foreground
 
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 30),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 10),
                               ),
                               child: (const Text('Log In as Parent')),
                             )
@@ -151,8 +150,6 @@ class _ParentLoginState extends State<ParentLogin> {
                         const SizedBox(
                           height: 30,
                         ),
-                        
-                            
                       ],
                     )),
               )
@@ -165,8 +162,7 @@ class _ParentLoginState extends State<ParentLogin> {
 
   void signIn(String email, String password) async {
     try {
-      if (_formKey.currentState() != null &&
-          _formKey.currentState()!.validate()) {
+      if (_formKey.currentState != null && _formKey.currentState!.validate()) {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
@@ -177,20 +173,20 @@ class _ParentLoginState extends State<ParentLogin> {
                   )
                 })
             .catchError((e) {
-          Fluttertoast.showToast(msg: "There's no match,Go and Register as Parent ");
-         
+          Fluttertoast.showToast(
+              msg:
+                  "Log in failed. The email or password that you entered is incorrect. ");
         });
       }
     } catch (e) {
-       
-      Fluttertoast.showToast(
-          msg: " ",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
+      // Fluttertoast.showToast(
+      //     msg: " ",
+      //     toastLength: Toast.LENGTH_LONG,
+      //   //  gravity: ToastGravity.CENTER,
+      //     timeInSecForIosWeb: 1,
+      //     backgroundColor: Colors.red,
+      //     textColor: Colors.white,
+      //     fontSize: 16.0);
     }
   }
 }

@@ -31,20 +31,17 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal[300],
+      // backgroundColor: Colors.teal[300],
       appBar: AppBar(
-        backgroundColor: Colors.teal[300],
-        title: const Center(
-          child: Text(
-            'Register as Tutor',
-            style: TextStyle(
-              fontSize: 25,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold,
-            ),
+        backgroundColor: Colors.brown[900],
+        title: const Text(
+          'Register as Tutor',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        toolbarHeight: 130,
+        toolbarHeight: 90,
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -81,7 +78,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             hintText: 'Tutor\'s Name ',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -93,12 +90,12 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              "please enter your emamil";
+                              "Please enter your email";
                             }
                             if (!RegExp(
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
-                              return (" please Enter a valid SUST Mail");
+                              return (" Please enter a valid SUST Mail");
                             }
                             return null;
                           },
@@ -111,7 +108,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             hintText: 'SUST Student Mail',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -129,9 +126,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             prefixIcon: Icon(Icons.house_outlined),
                             hintText: 'Tutor\'s Department',
                             border: OutlineInputBorder(
-                              
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -151,7 +147,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             hintText: 'Registration Number',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -160,26 +156,24 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         ),
                         TextFormField(
                           controller: tutorsMobilenoController,
-                          
                           keyboardType: TextInputType.number,
                           validator: (value) {},
                           onSaved: (value) {
                             registrationNoController.text = value!;
-                            
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.call_rounded),
                             hintText: 'Mobile number',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
                         const SizedBox(
                           height: 30,
                         ),
-                         TextFormField(
+                        TextFormField(
                           controller: genderController,
                           keyboardType: TextInputType.name,
                           validator: (value) {},
@@ -191,7 +185,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             hintText: 'Tutor\'s Gender',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -216,10 +210,10 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.vpn_key),
-                            hintText: 'password',
+                            hintText: 'Password',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -233,7 +227,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           validator: (value) {
                             if (tutorConfirmpasswordController.text !=
                                 tutorPasswordController.text) {
-                              return "password don't match";
+                              return "Password doesn't match";
                             }
                             return null;
                           },
@@ -242,10 +236,10 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.vpn_key),
-                            hintText: 'confirm password',
+                            hintText: 'Confirm password',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -259,33 +253,33 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                               onPressed: () {
                                 try {
                                   Fluttertoast.showToast(
-                                    msg: "Wait for a While",
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.CENTER,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.green,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                                      msg: "Please wait for a while",
+                                      toastLength: Toast.LENGTH_LONG,
+                                      // gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      // backgroundColor: Colors.green,
+                                      // textColor: Colors.white,
+                                      fontSize: 16.0);
                                   signUp2(sustMailController.text,
                                       tutorPasswordController.text);
                                 } catch (e) {
                                   Fluttertoast.showToast(
-                                      msg: "Some credential maybe misformated",
+                                      msg: "Some credentials maybe misformated",
                                       toastLength: Toast.LENGTH_LONG,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
+                                      // backgroundColor: Colors.red,
+                                      // textColor: Colors.white,
                                       fontSize: 16.0);
                                 }
                               },
                               style: ElevatedButton.styleFrom(
                                 textStyle: const TextStyle(fontSize: 20),
-                                primary: Colors.black12, //background
+                                primary: Colors.brown[700], //background
                                 onPrimary: Colors.white, //foreground
 
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 30),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 10),
                               ),
                               child: (const Text('Register as Tutor')),
                             )
@@ -305,7 +299,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   }
 
   void signUp2(String email, String password) async {
-    if (_formkey.currentState()!.validate()) {
+    if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {postDetailsFirestoreForTutor()})
