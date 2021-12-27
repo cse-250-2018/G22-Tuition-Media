@@ -2,10 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/homepage.dart';
-import 'package:tuitionmedia/parent_registration.dart';
-import 'package:tuitionmedia/retrive.dart';
-import 'package:tuitionmedia/tutor_login.dart';
-import 'package:tuitionmedia/tutor_registration.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class ParentLogin extends StatefulWidget {

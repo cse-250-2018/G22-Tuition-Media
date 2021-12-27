@@ -13,12 +13,16 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  
   const MyApp({Key? key}) : super(key: key);
+
+    static const String _title = 'SUST Tutors';
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "SUST Tutors",
+        title: _title,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blueGrey,

@@ -1,11 +1,14 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tuitionmedia/DropdownItems/dept_list.dart';
 import 'package:tuitionmedia/model/tutor_model.dart';
-import 'package:tuitionmedia/tutor_login.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/verifytutor.dart';
+import 'DropdownItems/dept_list.dart';
+import 'DropdownItems/gender_list.dart';
 
 class TutorRegistration extends StatefulWidget {
   const TutorRegistration({Key? key}) : super(key: key);
@@ -17,6 +20,8 @@ class TutorRegistration extends StatefulWidget {
 class _TutorRegistrationState extends State<TutorRegistration> {
   final _auth = FirebaseAuth.instance;
   final _formkey = GlobalKey<FormState>();
+  String _selectedDept = deptList[0];
+  String _selectedGender = genderList[0];
 
 //editing controller
   final tutorNameController = TextEditingController();
@@ -27,6 +32,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   final tutorConfirmpasswordController = TextEditingController();
   final genderController = TextEditingController();
   final tutorsMobilenoController = TextEditingController();
+
+  final genders = ['Male', 'Female'];
 
   @override
   Widget build(BuildContext context) {
@@ -115,22 +122,46 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        TextFormField(
-                          controller: deptController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            deptController.text = value!;
+                        //
+
+                        // DropdownButtonFormField(
+                        //   decoration: const InputDecoration(
+                        //       // icon: Icon(Icons.home),
+                        //       prefixIcon: Icon(Icons.home),
+                        //       border: OutlineInputBorder(
+                        //         borderRadius:
+                        //             BorderRadius.all(Radius.circular(10.0)),
+                        //       )),
+                        //   hint: const Text('Department'),
+                        //   items: deptList.map((tdept) {
+                        //     return DropdownMenuItem(
+                        //       child: Text(tdept),
+                        //       value: tdept,
+                        //     );
+                        //   }).toList(),
+                        //   isExpanded: true,
+
+                        // ),
+
+                        DropdownButtonFormField(
+                          // value: _selectedDept,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedDept = value.toString();
+                            });
                           },
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.house_outlined),
-                            hintText: 'Tutor\'s Department',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                          ),
+                              // icon: Icon(Icons.home),
+                              prefixIcon: Icon(Icons.home),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                              )),
+                          hint: const Text('Department'),
+                          items: deptList.map(buildMenuItem).toList(),
+                          isExpanded: true,
                         ),
+
                         const SizedBox(
                           height: 30,
                         ),
@@ -173,22 +204,42 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        TextFormField(
-                          controller: genderController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            deptController.text = value!;
+                        // TextFormField(
+                        //   controller: genderController,
+                        //   keyboardType: TextInputType.name,
+                        //   validator: (value) {},
+                        //   onSaved: (value) {
+                        //     deptController.text = value!;
+                        //   },
+                        //   decoration: const InputDecoration(
+                        //     prefixIcon: Icon(Icons.perm_identity),
+                        //     hintText: 'Tutor\'s Gender',
+                        //     border: OutlineInputBorder(
+                        //       borderRadius:
+                        //           BorderRadius.all(Radius.circular(10.0)),
+                        //     ),
+                        //   ),
+                        // ),
+
+                        DropdownButtonFormField(
+                          // value: _selectedDept,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedGender = value.toString();
+                            });
                           },
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.perm_identity),
-                            hintText: 'Tutor\'s Gender',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                          ),
+                              // icon: Icon(Icons.home),
+                              prefixIcon: Icon(Icons.perm_identity),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                              )),
+                          hint: const Text('Gender'),
+                          items: genderList.map(buildMenuItem).toList(),
+                          isExpanded: true,
                         ),
+
                         const SizedBox(
                           height: 30,
                         ),
@@ -309,6 +360,13 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     }
   }
 
+  DropdownMenuItem<String> buildMenuItem(String item) {
+    return DropdownMenuItem(
+      child: Text(item),
+      value: item,
+    );
+  }
+
   postDetailsFirestoreForTutor() async {
     //calling firestore
     //calling user model
@@ -323,7 +381,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     tutorModel.sustMail = user!.email;
     tutorModel.uid2 = user.uid;
     tutorModel.tutorName = tutorNameController.text;
-    tutorModel.dept = deptController.text;
+    tutorModel.dept = _selectedDept;
     tutorModel.registrationNumber = registrationNoController.text;
     tutorModel.gender = genderController.text;
     tutorModel.mobileno = tutorsMobilenoController.text;
