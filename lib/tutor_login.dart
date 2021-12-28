@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tuitionmedia/tutor_registration.dart';
+import 'package:tuitionmedia/tutors_pre_profile.dart';
 
 import 'package:tuitionmedia/tutors_profile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -171,7 +172,7 @@ class _TutorLoginState extends State<TutorLogin> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const TutorsProfile()),
+                        builder: (context) => const TutorsPreProfile()),
                   )
                 })
             .catchError((e) {

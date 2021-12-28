@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tuitionmedia/help.dart';
 import 'package:tuitionmedia/parent_login.dart';
 import 'package:tuitionmedia/parent_registration.dart';
 import 'package:tuitionmedia/tutor_login.dart';
@@ -41,11 +42,11 @@ class _InitialSceneState extends State<InitialScene> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                          height: 200,
-                          width: 200,
+                          height: MediaQuery. of(context). size. height/6,
+                          width: MediaQuery. of(context). size. width,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -65,9 +66,14 @@ class _InitialSceneState extends State<InitialScene> {
                             ),
                             child: (const Text('Log In as Parent')),
                           )),
+                    ]
+                ),
+                Row(
+                  
+                    children: <Widget>[
                       SizedBox(
-                          height: 200,
-                          width: 200,
+                           height: MediaQuery. of(context). size. height/6,
+                          width: MediaQuery. of(context). size. width,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -90,12 +96,12 @@ class _InitialSceneState extends State<InitialScene> {
                     //mainAxisAlignment: MainAxisAlignment.start,
 
                     ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                          height: 200,
-                          width: 200,
+                           height: MediaQuery. of(context). size. height/6,
+                          width: MediaQuery. of(context). size. width,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -114,10 +120,15 @@ class _InitialSceneState extends State<InitialScene> {
                                   const EdgeInsets.symmetric(horizontal: 30),
                             ),
                             child: (const Text('Register as Parent')),
-                          )),
+                          )),]
+                    ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      
                       SizedBox(
-                          height: 200,
-                          width: 200,
+                           height: MediaQuery. of(context). size. height/6,
+                          width: MediaQuery. of(context). size. width,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -136,6 +147,38 @@ class _InitialSceneState extends State<InitialScene> {
                                   const EdgeInsets.symmetric(horizontal: 30),
                             ),
                             child: (const Text('Register as Tutor')),
+                          )),
+                    ]
+                    //mainAxisAlignment: MainAxisAlignment.start,
+
+                    ),
+                    Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      
+                      SizedBox(
+                           height: MediaQuery. of(context). size. height/9,
+                          width: MediaQuery. of(context). size. width/1.5,
+                          
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+
+                                        const NeedHelp()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              textStyle: const TextStyle(fontSize: 20),
+                              primary: Colors.brown, //background
+                              onPrimary: Colors.white, //foreground
+
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
+                            ),
+                            child: (const Text('Need Help??')),
                           )),
                     ]
                     //mainAxisAlignment: MainAxisAlignment.start,

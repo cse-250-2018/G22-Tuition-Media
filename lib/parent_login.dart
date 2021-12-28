@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:tuitionmedia/homepage.dart';
+import 'package:tuitionmedia/alltutorsprofile.dart';
 import 'package:tuitionmedia/parent_registration.dart';
+import 'package:tuitionmedia/parentspage.dart';
 import 'package:tuitionmedia/retrive.dart';
 import 'package:tuitionmedia/tutor_login.dart';
 import 'package:tuitionmedia/tutor_registration.dart';
@@ -173,7 +174,7 @@ class _ParentLoginState extends State<ParentLogin> {
                   Fluttertoast.showToast(msg: "Login Successful"),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Homepage()),
+                    MaterialPageRoute(builder: (context) => const ParentsPage()),
                   )
                 })
             .catchError((e) {

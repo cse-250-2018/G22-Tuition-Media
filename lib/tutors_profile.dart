@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
+///
+///
+///eine tui kaj kor
+
 
 class TutorsProfile extends StatefulWidget {
   const TutorsProfile({Key? key}) : super(key: key);
@@ -13,45 +17,35 @@ class TutorsProfile extends StatefulWidget {
 }
 
 class _TutorsProfileState extends State<TutorsProfile> {
+  late final String documentId;
+
+ 
   @override
   Widget build(BuildContext context) {
     
-        
-    return Scaffold(
-      backgroundColor: Colors.teal,
-      appBar: AppBar(
-        backgroundColor: Colors.brown,
-        title: const Center(
-          child: Text(
-            'Your Profile ',
-            style: TextStyle(
-              fontSize: 25,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        toolbarHeight: 60,
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+      CollectionReference users= FirebaseFirestore.instance.collection('tutors');
 
-            children: const [
-              Text(
-                'Here will be all data of this Tutor  ',
-            style: TextStyle(
-              fontSize: 25,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold,
-              )
-              )
-            ],
-          ),
-        ),
-      ),
+        
+    return FutureBuilder<DocumentSnapshot>(
+      future: users.doc(documentId).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+        if (snapshot.hasError) {
+          return const Text("Something went wrong");
+        }
+
+        if (snapshot.hasData && !snapshot.data!.exists) {
+          return const Text("Document does not exist");
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+          return Text("Full Name: ${data['full_name']} ${data['last_name']}");
+        }
+
+        return const Text("loading");
+      },
     );
   }
 }
