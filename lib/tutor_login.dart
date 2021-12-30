@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tuitionmedia/pages/tutors_profile_page.dart';
 import 'package:tuitionmedia/tutor_registration.dart';
 
-import 'package:tuitionmedia/tutors_profile.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class TutorLogin extends StatefulWidget {
@@ -166,11 +166,11 @@ class _TutorLoginState extends State<TutorLogin> {
                   Fluttertoast.showToast(msg: "Login Successful"),
 
                   ///have to include the tutor's profile scene
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const TutorsProfile()),
-                  )
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => const TutorProfilePage()),
+                  // )
                 })
             .catchError((e) {
           Fluttertoast.showToast(
