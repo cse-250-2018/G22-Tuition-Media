@@ -2,7 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tuitionmedia/pages/tutors_profile_page.dart';
+
+import 'package:tuitionmedia/model/tutor_model.dart';
+import 'package:tuitionmedia/pages/tutor_profile.dart';
+
 import 'package:tuitionmedia/tutor_registration.dart';
 
 import 'package:fluttertoast/fluttertoast.dart';
@@ -162,17 +165,19 @@ class _TutorLoginState extends State<TutorLogin> {
           _formKey2.currentState!.validate()) {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
-            .then((uid2) => {
-                  Fluttertoast.showToast(msg: "Login Successful"),
+            .then((uid2) {
+          Fluttertoast.showToast(msg: "Login Successful");
 
-                  ///have to include the tutor's profile scene
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => const TutorProfilePage()),
-                  // )
-                })
-            .catchError((e) {
+          ///have to include the tutor's profile scene
+          ///
+          User user = _auth.currentUser!;
+          print(user.uid);
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TutorsProfile(user.uid)),
+          );
+        }).catchError((e) {
           Fluttertoast.showToast(
               msg: "Email or password maybe wrong, try again or Register");
         });

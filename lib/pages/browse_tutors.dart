@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:tuitionmedia/pages/tutor_profile.dart';
+import 'package:tuitionmedia/pages/tutor_profile.dart';
 
 class BrowseTutors extends StatelessWidget {
   const BrowseTutors({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class BrowseTutors extends StatelessWidget {
                   return const Center(child: Text("Something went wrong"));
                 } else if (snapshot.connectionState ==
                     ConnectionState.waiting) {
-                  return const Center(child: Text("Loading"));
+                  return CircularProgressIndicator();
                 } else {
                   final data = snapshot.requireData;
                   return ListView.builder(
@@ -37,15 +37,17 @@ class BrowseTutors extends StatelessWidget {
                       return Card(
                         elevation: 5,
                         child: ListTile(
-                          title: Text(data.docs[index]['tutorName']),
-                          subtitle: Text(data.docs[index]['dept']),
-                          // onTap: () => Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           TutorsProfile(data.docs[index]['uid2'])),
-                          // ),
-                        ),
+                            title: Text(data.docs[index]['tutorName']),
+                            subtitle: Text(data.docs[index]['dept']),
+                            onTap: () async {
+                              final uid3 = data.docs[index]['uid2'];
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TutorsProfile(uid3)),
+                              );
+                            }),
                       );
                     },
                   );

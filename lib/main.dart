@@ -13,11 +13,9 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  
   const MyApp({Key? key}) : super(key: key);
 
-    static const String _title = 'SUST Tutors';
-
+  static const String _title = 'SUST Tutors';
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +31,11 @@ class MyApp extends StatelessWidget {
           ),
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.brown[900],
+          ),
+          textTheme: const TextTheme(
+            headline6: TextStyle(
+              fontFamily: 'Inter',
+            ),
           ),
         ),
         home: const SplashScreen(),

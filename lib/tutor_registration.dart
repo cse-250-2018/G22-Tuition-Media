@@ -2,9 +2,15 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+
 import 'package:tuitionmedia/DropdownItems/dept_list.dart';
+import 'package:tuitionmedia/DropdownItems/subject_list.dart';
 import 'package:tuitionmedia/model/tutor_model.dart';
 import 'package:tuitionmedia/verifytutor.dart';
 import 'DropdownItems/dept_list.dart';
@@ -22,6 +28,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   final _formkey = GlobalKey<FormState>();
   String _selectedDept = deptList[0];
   String _selectedGender = genderList[0];
+  List<String> _selectedSubjects = [];
+  String subjects = '';
 
 //editing controller
   final tutorNameController = TextEditingController();
@@ -124,25 +132,6 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         ),
                         //
 
-                        // DropdownButtonFormField(
-                        //   decoration: const InputDecoration(
-                        //       // icon: Icon(Icons.home),
-                        //       prefixIcon: Icon(Icons.home),
-                        //       border: OutlineInputBorder(
-                        //         borderRadius:
-                        //             BorderRadius.all(Radius.circular(10.0)),
-                        //       )),
-                        //   hint: const Text('Department'),
-                        //   items: deptList.map((tdept) {
-                        //     return DropdownMenuItem(
-                        //       child: Text(tdept),
-                        //       value: tdept,
-                        //     );
-                        //   }).toList(),
-                        //   isExpanded: true,
-
-                        // ),
-
                         DropdownButtonFormField(
                           // value: _selectedDept,
                           onChanged: (value) {
@@ -204,22 +193,6 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        // TextFormField(
-                        //   controller: genderController,
-                        //   keyboardType: TextInputType.name,
-                        //   validator: (value) {},
-                        //   onSaved: (value) {
-                        //     deptController.text = value!;
-                        //   },
-                        //   decoration: const InputDecoration(
-                        //     prefixIcon: Icon(Icons.perm_identity),
-                        //     hintText: 'Tutor\'s Gender',
-                        //     border: OutlineInputBorder(
-                        //       borderRadius:
-                        //           BorderRadius.all(Radius.circular(10.0)),
-                        //     ),
-                        //   ),
-                        // ),
 
                         DropdownButtonFormField(
                           // value: _selectedDept,
@@ -297,6 +270,25 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+                        Container(
+                          color: Colors.black,
+                          height: 40,
+                          child: MultiSelectDialog<String>(
+                            items: subjectsList
+                                .map((e) => MultiSelectItem(e, e))
+                                .toList(),
+                            initialValue: _selectedSubjects,
+                            onConfirm: (values) {
+                              setState(() {
+                                subjects = values.toString();
+                                _selectedSubjects = values;
+                                print(values);
+                                print(subjects);
+                              });
+                            },
+                          ),
+                        ),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -383,7 +375,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     tutorModel.tutorName = tutorNameController.text;
     tutorModel.dept = _selectedDept;
     tutorModel.registrationNumber = registrationNoController.text;
-    tutorModel.gender = genderController.text;
+    tutorModel.gender = _selectedGender;
     tutorModel.mobileno = tutorsMobilenoController.text;
 
     await firebaseFirestore
@@ -398,4 +390,16 @@ class _TutorRegistrationState extends State<TutorRegistration> {
         MaterialPageRoute(builder: (context) => const SustMailVerify()),
         (route) => false);
   }
+//   void _showMultiSelectDialog(BuildContext context) async {
+//   await showDialog(
+//     context: context,
+//     builder: (ctx) {
+//       return  MultiSelectDialog(
+//         items: subjectsList.map((e) => MultiSelectItem(e, e)).toList(),
+//         initialValue: _selectedAnimals,
+//         onConfirm: (values) {...},
+//       );
+//     },
+//   );
+// }
 }

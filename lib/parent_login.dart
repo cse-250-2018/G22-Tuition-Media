@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:tuitionmedia/homepage.dart';
-
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tuitionmedia/homepage.dart';
+import 'package:tuitionmedia/pages/parent_page.dart';
 
 class ParentLogin extends StatefulWidget {
   const ParentLogin({Key? key}) : super(key: key);
@@ -166,7 +166,8 @@ class _ParentLoginState extends State<ParentLogin> {
                   Fluttertoast.showToast(msg: "Login Successful"),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Homepage()),
+                    MaterialPageRoute(
+                        builder: (context) => const ParentProfile()),
                   )
                 })
             .catchError((e) {

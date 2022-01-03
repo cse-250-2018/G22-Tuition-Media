@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:tuitionmedia/pages/tutor_profile.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -50,6 +51,7 @@ class Homepage extends StatelessWidget {
                       return const Center(child: Text("Loading"));
                     } else {
                       final data = snapshot.requireData;
+                      print(data);
                       return ListView.builder(
                         //to avoid error added next two line
                         scrollDirection: Axis.vertical,
@@ -59,9 +61,16 @@ class Homepage extends StatelessWidget {
                           return Card(
                             elevation: 5,
                             child: ListTile(
-                              title: Text(data.docs[index]['tutorName']),
-                              subtitle: Text(data.docs[index]['dept']),
-                            ),
+                                title: Text(data.docs[index]['tutorName']),
+                                subtitle: Text(data.docs[index]['dept']),
+                                onTap: () {
+                                  print(data.docs[index]['uid2']);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => TutorsProfile(
+                                              data.docs[index]['uid2'])));
+                                }),
                           );
                           //return Text(' ${data.docs[index]['tutorName']} and mobileno ${data.docs[index]['mobileno']}');
                           // return SingleChildScrollView(
