@@ -2,18 +2,16 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:tuitionmedia/parent_login.dart';
-import 'package:tuitionmedia/tutor_login.dart';
-class SustMailVerify extends StatefulWidget {
-  const SustMailVerify({ Key? key }) : super(key: key);
+import 'package:tuitionmedia/parent_registration.dart';
+class RefferedMailVerification extends StatefulWidget {
+  const RefferedMailVerification({ Key? key }) : super(key: key);
 
   @override
-  _SustMailVerifyState createState() => _SustMailVerifyState();
+  _RefferedMailVerificationState createState() => _RefferedMailVerificationState();
 }
 
-//verified email by sending a link,if pressed that link,then email will be verified.
-class _SustMailVerifyState extends State<SustMailVerify> {
-    final auth = FirebaseAuth.instance;
+class _RefferedMailVerificationState extends State<RefferedMailVerification> {
+  final auth = FirebaseAuth.instance;
   late User user ;
   late Timer timer;
 
@@ -21,16 +19,17 @@ class _SustMailVerifyState extends State<SustMailVerify> {
   void initState() {
     user = auth.currentUser!;
     user.sendEmailVerification();
-    //added timer to check link is pressed or not
+
+    //set time duration after which it will check link is pressed or not
     timer= Timer.periodic(const Duration(seconds:2), (timer) { 
       checkEmailVerified();
     });
-    
+          
     super.initState();
   }
   @override
   void dispose() {
-    
+  
     timer.cancel();
     super.dispose();
   }
@@ -41,29 +40,36 @@ class _SustMailVerifyState extends State<SustMailVerify> {
          backgroundColor: Colors.teal,
         toolbarHeight: 100,
       ),
+      
       backgroundColor: Colors.teal,
-      body: const Center(
+      
+      body:const  Center(
         child: Text('An email has been sent, please verify',
-        style: TextStyle(
+         style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
-        )
+        ),
+        
       ),
     );
   }
-  //sending link to given sust mail
+
+  //sending link to email
   Future<void> checkEmailVerified() async{
     user =auth.currentUser!;
+  
     await user.reload();
     if(user.emailVerified){
       timer.cancel();
-      
+      auth.currentUser!.delete();
+
       Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const TutorLogin()),
+                    MaterialPageRoute(builder: (context) => const ParentRegistration()),
                   );
 
     }
   }
 }
+

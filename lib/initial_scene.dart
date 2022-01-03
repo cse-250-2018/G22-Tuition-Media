@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/help.dart';
 import 'package:tuitionmedia/parent_login.dart';
 import 'package:tuitionmedia/parent_registration.dart';
+import 'package:tuitionmedia/sustmailrefer_scene.dart';
 import 'package:tuitionmedia/tutor_login.dart';
 import 'package:tuitionmedia/tutor_registration.dart';
 
@@ -13,12 +14,17 @@ class InitialScene extends StatefulWidget {
   _InitialSceneState createState() => _InitialSceneState();
 }
 
+//here we added 4 different route and help scene(where people can go to understand the app's feature)
 class _InitialSceneState extends State<InitialScene> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        flexibleSpace: const Image(
+          image: AssetImage('assets/leaf.jpg'),
+          fit: BoxFit.cover,
+        ),
+        
         title: const Center(
           child: Text(
             'Welcome to SUSTian  Media',
@@ -29,14 +35,17 @@ class _InitialSceneState extends State<InitialScene> {
             ),
           ),
         ),
-        toolbarHeight: 150,
+        toolbarHeight: 190,
       ),
         body: Container(
+          //added background image and fitted it to boxsize
             decoration: const BoxDecoration(
                 image: DecorationImage(
               image: AssetImage("assets/leaf.jpg"),
               fit: BoxFit.cover,
             )),
+
+            //added parent login,parents registration, tutor login,tutor registration,help Rows in this column .
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,6 +60,7 @@ class _InitialSceneState extends State<InitialScene> {
                             onPressed: () {
                               Navigator.push(
                                 context,
+                                //directed to parentlogin scene
                                 MaterialPageRoute(
                                     builder: (context) => const ParentLogin()),
                               );
@@ -78,6 +88,7 @@ class _InitialSceneState extends State<InitialScene> {
                             onPressed: () {
                               Navigator.push(
                                 context,
+                                //directed to tutorlogin scene
                                 MaterialPageRoute(
                                     builder: (context) => const TutorLogin()),
                               );
@@ -107,8 +118,9 @@ class _InitialSceneState extends State<InitialScene> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
+                                  //directed to parent Registration scene
                                     builder: (context) =>
-                                        const ParentRegistration()),
+                                        const SustMailReferenceScene()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -134,6 +146,7 @@ class _InitialSceneState extends State<InitialScene> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
+                                  //directed to tutorRegistration scene
                                     builder: (context) =>
                                         const TutorRegistration()),
                               );
@@ -149,22 +162,23 @@ class _InitialSceneState extends State<InitialScene> {
                             child: (const Text('Register as Tutor')),
                           )),
                     ]
-                    //mainAxisAlignment: MainAxisAlignment.start,
+                    
 
                     ),
                     Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       
-                      SizedBox(
-                           height: MediaQuery. of(context). size. height/9,
-                          width: MediaQuery. of(context). size. width/1.5,
+                      //SizedBox(
+                         //  height: MediaQuery. of(context). size. height/9,
+                          //width: MediaQuery. of(context). size. width/1.5,
                           
-                          child: ElevatedButton(
+                           ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
+                                  //directed to help scene
                                     builder: (context) =>
 
                                         const NeedHelp()),
@@ -179,7 +193,7 @@ class _InitialSceneState extends State<InitialScene> {
                                   const EdgeInsets.symmetric(horizontal: 30),
                             ),
                             child: (const Text('Need Help??')),
-                          )),
+                          ),
                     ]
                     //mainAxisAlignment: MainAxisAlignment.start,
 

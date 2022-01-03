@@ -14,16 +14,15 @@ class _ParentsPageState extends State<ParentsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      // in this container we added some sizedbox for button
         body: Container(
-            /*decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage("assets/leaf.jpg"),
-              fit: BoxFit.cover,
-            )),*/
+            
             child: Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        //this row contains Parent's new student registration
         Row(
           mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           SizedBox(
@@ -31,6 +30,7 @@ class _ParentsPageState extends State<ParentsPage> {
               width: MediaQuery. of(context). size. width,
               child: ElevatedButton(
                 onPressed: () {
+                  //refers to StudentRegistration page
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -50,6 +50,8 @@ class _ParentsPageState extends State<ParentsPage> {
         ]
             //mainAxisAlignment: MainAxisAlignment.start,
             ),
+
+            //this button refres to this parents all students profile
             Row(
           mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           SizedBox(
@@ -57,6 +59,7 @@ class _ParentsPageState extends State<ParentsPage> {
               width: MediaQuery. of(context). size. width,
               child: ElevatedButton(
                 onPressed: () {
+                  //refers to MyAllStudents scene
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -77,6 +80,8 @@ class _ParentsPageState extends State<ParentsPage> {
         ]
             //mainAxisAlignment: MainAxisAlignment.start,
             ),
+
+            //this widget refers to AllAvailable tutors profile
             Row(
           mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           SizedBox(

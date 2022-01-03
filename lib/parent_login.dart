@@ -15,6 +15,8 @@ class ParentLogin extends StatefulWidget {
   _ParentLoginState createState() => _ParentLoginState();
 }
 
+//taken email and password,checked these exists or not,if matched then give access to App.
+
 class _ParentLoginState extends State<ParentLogin> {
   //form key
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -164,6 +166,7 @@ class _ParentLoginState extends State<ParentLogin> {
     );
   }
 
+//parents signing using email and password if valid 
   void signIn(String email, String password) async {
     try {
       if (_formKey.currentState() != null &&
@@ -177,13 +180,14 @@ class _ParentLoginState extends State<ParentLogin> {
                     MaterialPageRoute(builder: (context) => const ParentsPage()),
                   )
                 })
+                 //used toast t show error message
             .catchError((e) {
           Fluttertoast.showToast(msg: "There's no match,Go and Register as Parent ");
          
         });
       }
     } catch (e) {
-       
+      
       Fluttertoast.showToast(
           msg: " ",
           toastLength: Toast.LENGTH_LONG,

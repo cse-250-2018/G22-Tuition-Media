@@ -17,8 +17,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
+      
+      //Removed pre written word debug from the screen
       debugShowCheckedModeBanner: false,
+
+      //added splashScreen
       home :const SplashScreen(),
+
+      //moved to Initial Scene
       routes:{
         'initialscene': (context)=> const InitialScene()
       }
@@ -35,6 +41,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+//Added timer (for how long it will be on the screen)
   void startTimer(){
     Timer(const Duration(seconds: 2),(){
       Navigator.of(context).pushReplacementNamed('initialscene');
@@ -50,8 +57,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //added background color
      backgroundColor: Colors.grey,
      body: Container(
+       //added Image from assets
        decoration: const BoxDecoration(
          image: DecorationImage(
            image: AssetImage('assets/launch_screen.png'),

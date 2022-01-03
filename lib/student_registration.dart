@@ -17,6 +17,7 @@ class StudentRegistration extends StatefulWidget {
   _StudentRegistrationState createState() => _StudentRegistrationState();
 }
 
+//this class is used for registering new student under a parents account 
 class _StudentRegistrationState extends State<StudentRegistration> {
   final _auth = FirebaseAuth.instance;
   final _formkey = GlobalKey<FormState>();
@@ -53,6 +54,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
         ),
         toolbarHeight: 130,
       ),
+      //added SingleChildScrollView so that we can scroll
       body: SingleChildScrollView(
         child: Form(
           key: _formkey,
@@ -66,6 +68,9 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         left: 35),
                     child: Column(
                       children: [
+
+                        //taken student name via this formfield
+
                         TextFormField(
                           controller: studentNameController,
                           keyboardType: TextInputType.name,
@@ -95,6 +100,9 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+                        
+                        //taken dept value via DropdownButtonField
+
                         DropdownButtonFormField(
                           // value: _selectedDept,
                           onChanged: (value) {
@@ -116,24 +124,10 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        /*TextFormField(
-                          controller: deptController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            deptController.text = value!;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.house_outlined),
-                            hintText: 'English/Bengali Medium',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),*/
+                        
+                        //used DropdownButtonFormField for taking input of medium
                         DropdownButtonFormField(
-                          // value: _selectedDept,
+                          
                           onChanged: (value) {
                             setState(() {
                               _selectedMedium = value.toString();
@@ -154,6 +148,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                           height: 30,
                         ),
                         
+                        //used DropdownButtonformfield for taking input of Groups
                         DropdownButtonFormField(
                          
                           onChanged: (value) {
@@ -175,6 +170,8 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        //used DropdownButtonFormField for taking input of which class student is studying
                         DropdownButtonFormField(
                          
                           onChanged: (value) {
@@ -196,6 +193,8 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        // used this to know which subjects should be taught
                         TextFormField(
                           controller: subjectController,
                           keyboardType: TextInputType.name,
@@ -215,6 +214,8 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        //students location ,where tutor should go
                         TextFormField(
                           controller: locationController,
                           keyboardType: TextInputType.name,
@@ -234,6 +235,9 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        //parents demand: that means what parents want from tutor,they can add conditon here
+                        //it's upto partents,whatever their requirement is  they can add here
                         TextFormField(
                           controller: parentsDemandController,
                           keyboardType: TextInputType.name,
@@ -253,6 +257,8 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        //add this dropdownButton so that TUTORING days can be fixed here
                          DropdownButtonFormField(
                           // value: _selectedDept,
                           onChanged: (value) {
@@ -291,6 +297,8 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        //salary that parents are willing to give to tutor
                         TextFormField(
                           controller: salaryController,
                           keyboardType: TextInputType.number,
@@ -310,6 +318,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+                        //added mobile no
                         TextFormField(
                           controller: studentmobileNoController,
                           keyboardType: TextInputType.number,
@@ -329,6 +338,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+                        //submitting all values
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -344,7 +354,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                                       textColor: Colors.white,
                                       fontSize: 16.0);
                                   //signUp3(studentNameController.text,_selectedGenderofStudent);
-                                  postDetailsFirestoreForTutor();
+                                  postDetailsFirestoreForStudent();
                                 } catch (e) {
                                   Fluttertoast.showToast(
                                       msg: "Some credential maybe misformated",
@@ -380,17 +390,8 @@ class _StudentRegistrationState extends State<StudentRegistration> {
       ),
     );
   }
-  // used student name and gender instead of email and password
-/*void signUp3(String studentname,String gender) async {
-    if (_formkey.currentState()!.validate()) {
-      await _auth
-          .createUserWithEmailAndPassword(email: studentname, password: gender)
-          .then((value) => {postDetailsFirestoreForTutor()})
-          .catchError((e) {
-        Fluttertoast.showToast(msg: e!.message);
-      });
-    }
-  }*/
+
+//required function for dropdownmenu item
   DropdownMenuItem<String> buildMenuItem(String item) {
     return DropdownMenuItem(
       child: Text(item),
@@ -398,7 +399,8 @@ class _StudentRegistrationState extends State<StudentRegistration> {
     );
   }
 
-  postDetailsFirestoreForTutor() async {
+  //sending data to firebase for students
+  postDetailsFirestoreForStudent() async {
     //calling firestore
     //calling user model
     //calling these values

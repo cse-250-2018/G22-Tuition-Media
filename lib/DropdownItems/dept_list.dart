@@ -1,5 +1,5 @@
 
-
+//all dept list for dropdownbox
 final deptList = [
   'ANP - Anthropology',
   'ARC - Architecture',

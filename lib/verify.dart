@@ -19,6 +19,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
   void initState() {
     user = auth.currentUser!;
     user.sendEmailVerification();
+
+    //set time duration after which it will check link is pressed or not
     timer= Timer.periodic(const Duration(seconds:2), (timer) { 
       checkEmailVerified();
     });
@@ -33,9 +35,13 @@ class _VerifyScreenState extends State<VerifyScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
+       appBar: AppBar(
+         backgroundColor: Colors.teal,
+        toolbarHeight: 100,
+      ),
       backgroundColor: Colors.teal,
-      body: Center(
+      body: const Center(
         child: Text('An email has been sent, please verify',
          style: TextStyle(
               fontSize: 20,
@@ -46,6 +52,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
       ),
     );
   }
+
+  //sending link to email
   Future<void> checkEmailVerified() async{
     user =auth.currentUser!;
     await user.reload();

@@ -10,6 +10,7 @@ import 'package:tuitionmedia/model/user_model.dart';
 import 'package:tuitionmedia/parent_login.dart';
 import 'package:tuitionmedia/verify.dart';
 
+//Here we registered parents
 
 class ParentRegistration extends StatefulWidget {
   const ParentRegistration({Key? key}) : super(key: key);
@@ -22,10 +23,10 @@ class _ParentRegistrationState extends State<ParentRegistration> {
   final _auth = FirebaseAuth.instance;
   final _formkey = GlobalKey<FormState>();
 
-//editing controller
+//editing controllers
   final parentnameController = TextEditingController();
   final emailControllerparent = TextEditingController();
-  final refferedsustmailController = TextEditingController();
+  //final refferedsustmailController = TextEditingController();
   final mobilenoController = TextEditingController();
   final passwordControllerparent = TextEditingController();
   final confirmpasswordControllerparent = TextEditingController();
@@ -39,6 +40,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         title: const Center(
           child: Text(
             'Register as Parent',
+            //added textstyle
             style: TextStyle(
               fontSize: 25,
               fontStyle: FontStyle.italic,
@@ -48,6 +50,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         ),
         toolbarHeight: 150,
       ),
+      //added within a singleChildScrollView so that we can scroll 
       body: SingleChildScrollView(
         child: Form(
           key: _formkey,
@@ -55,11 +58,13 @@ class _ParentRegistrationState extends State<ParentRegistration> {
             children: [
               Center(
                 child: Container(
+                  //added padding to this container
                     padding: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height * 0.05,
                         right: 35,
                         left: 35),
                     child: Column(
+                      //added TextFormField for email,refferedsustmail,mobile,password 
                       children: [
                         TextFormField(
                           autofocus: false,
@@ -67,6 +72,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                           controller: parentnameController,
                           keyboardType: TextInputType.name,
                           //name should be at least 3 character
+                          
                           validator: (value) {
                             RegExp regex = RegExp(r'^.{3,}$');
                             if (value!.isEmpty) {
@@ -96,6 +102,8 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                           autofocus: false,
                           controller: emailControllerparent,
                           keyboardType: TextInputType.emailAddress,
+
+                          //added validator to validate this email
                           validator: (value) {
                             if (value!.isEmpty) {
                               "please enter your emamil";
@@ -123,10 +131,12 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        TextFormField(
+                       /* TextFormField(
                           autofocus: false,
                           controller: refferedsustmailController,
                           keyboardType: TextInputType.emailAddress,
+
+                          //added validator to validate this sust mail
                           validator: (value) {
                             if (value!.isEmpty) {
                               "Enter reffered SUST mail";
@@ -154,7 +164,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                         ),
                         const SizedBox(
                           height: 30,
-                        ),
+                        ),*/
                         TextFormField(
                           autofocus: false,
                           controller: mobilenoController,
@@ -277,6 +287,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
     );
   }
 
+  //did signup using email,password and all other constrain 
   void signUp(String email, String password) async {
     try{
  if (_formkey.currentState()!.validate()) {
@@ -302,6 +313,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
    
   }
 
+  //saving data to firebase firestore 
   postDetailsFirestore() async {
     //calling firestore
     //calling user model
@@ -316,7 +328,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.parentName = parentnameController.text;
-    userModel.refferedSustMail = refferedsustmailController.text;
+    //userModel.refferedSustMail = refferedsustmailController.text;
     userModel.mobileno = mobilenoController.text;
 
     await firebaseFirestore

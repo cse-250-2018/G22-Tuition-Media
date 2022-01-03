@@ -33,6 +33,10 @@ class AllStudentsProfile extends StatelessWidget {
           child: Column(
             children: [
               Container(
+
+                //showed every students profile in this page,it consists Name,
+                //Gender,Group,Medium,class,mobileno,salary,location
+
                 child: StreamBuilder<QuerySnapshot>(
                   stream: users,
                   builder: (
@@ -58,6 +62,7 @@ class AllStudentsProfile extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                             Text(
+                              // by this $ sign,we have bouhgt data from firebase firestore,and showed inside of a string
                               'Students\'s Name :  ${data.docs[index]['studentName']}',
                               style: const TextStyle(
                                 fontSize: 20,
@@ -149,6 +154,7 @@ class AllStudentsProfile extends StatelessWidget {
                             const SizedBox(
                               height: 5,
                             ),
+                            //added mobile no but we haven't showed it,we implemented call featue here
                             Row(
                               children: [
                                 ElevatedButton(

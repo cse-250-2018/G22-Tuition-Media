@@ -2,10 +2,10 @@ class UserModel{
   String? uid;
   String? email;
   String? parentName;
-  String? refferedSustMail;
+  //String? refferedSustMail;
   String? mobileno;
 
-  UserModel({this.uid,this.email,this.parentName,this.refferedSustMail,this.mobileno});
+  UserModel({this.uid,this.email,this.parentName,/*this.refferedSustMail*/this.mobileno});
 
   //receiving data from server
   factory UserModel.fromMap(map){
@@ -14,7 +14,7 @@ class UserModel{
       email: map['email'],
       parentName: map['parentname'],
       mobileno: map['mobileno'],
-      refferedSustMail: map['refferedSustMail'],
+      //refferedSustMail: map['refferedSustMail'],
 
     );
   }
@@ -27,7 +27,7 @@ class UserModel{
       'email':email,
       'parentName':parentName,
       'mobileno':mobileno,
-      'referredSustMail':refferedSustMail,
+      //'referredSustMail':refferedSustMail,
 
     };
   }

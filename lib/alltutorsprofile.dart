@@ -27,11 +27,14 @@ class AllTutorsProfile extends StatelessWidget {
         toolbarHeight: 60,
       ),
       ///side e j container deya ache 30 size er oi area te scroll kaj korbe
+      //added single child scrollView so that we can scroll this page.
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: Column(
             children: [
+      //here we showed every tutor's data and what it contains of
+      //every tutors profile contains name,dept,mobileno,ex-college name,gender,sustmail
               Container(
                 child: StreamBuilder<QuerySnapshot>(
                   stream: users,
@@ -59,6 +62,16 @@ class AllTutorsProfile extends StatelessWidget {
                               children: [
                             Text(
                               'Tutor\'s Name :  ${data.docs[index]['tutorName']}',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Tutor\'s College Name :  ${data.docs[index]['tutorsCollegeName']}',
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
@@ -96,6 +109,7 @@ class AllTutorsProfile extends StatelessWidget {
                               height: 5,
                             ),
                             
+                            //added mobile no but we haven't showed it,we implemented call featue here
                             Row(
                               children: [
                                 ElevatedButton(

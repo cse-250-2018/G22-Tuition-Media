@@ -8,13 +8,15 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/verifytutor.dart';
 import 'package:tuitionmedia/DropdownItems/dept_list.dart';
 import 'package:tuitionmedia/DropdownItems/gender_list.dart';
-//add college name +gpa,hsc boar,ssc board
+
 class TutorRegistration extends StatefulWidget {
   const TutorRegistration({Key? key}) : super(key: key);
 
   @override
   _TutorRegistrationState createState() => _TutorRegistrationState();
 }
+
+////Here we registered tutors
 
 class _TutorRegistrationState extends State<TutorRegistration> {
   final _auth = FirebaseAuth.instance;
@@ -25,12 +27,13 @@ class _TutorRegistrationState extends State<TutorRegistration> {
  
 //editing controller
   final tutorNameController = TextEditingController();
+  final tutorCollegeNameController = TextEditingController();
   final sustMailController = TextEditingController();
-  //final deptController = TextEditingController();
+  
   final registrationNoController = TextEditingController();
   final tutorPasswordController = TextEditingController();
   final tutorConfirmpasswordController = TextEditingController();
- // final genderController = TextEditingController();
+ 
   final tutorsMobilenoController = TextEditingController();
 
   @override
@@ -51,6 +54,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
         ),
         toolbarHeight: 130,
       ),
+
+      //added singleChildScrollView so that we can scroll
       body: SingleChildScrollView(
         child: Form(
           key: _formkey,
@@ -62,6 +67,10 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         top: MediaQuery.of(context).size.height * 0.05,
                         right: 35,
                         left: 35),
+
+                        //in this colum we added TextFormField of tutor name,sustmail,registrtion,Ex-college,mobile no here
+                        //and added dropdownbuttonForm field for current dept and gender
+
                     child: Column(
                       children: [
                         TextFormField(
@@ -90,12 +99,16 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             ),
                           ),
                         ),
+
+                        //used sizedBox to have distance between two Textformfield
+
                         const SizedBox(
                           height: 30,
                         ),
                         TextFormField(
                           controller: sustMailController,
                           keyboardType: TextInputType.emailAddress,
+                          //added email validation
                           validator: (value) {
                             if (value!.isEmpty) {
                               "please enter your emamil";
@@ -140,6 +153,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           ),
                         ),*/
                        
+                       //In dropdownbutton we can only select one value ,here one can select only 1 dept.
+
                         DropdownButtonFormField(
                           // value: _selectedDept,
                           onChanged: (value) {
@@ -158,11 +173,32 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           items: deptList.map(buildMenuItem).toList(),
                           isExpanded: true,
                         ),
-
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        
+                        TextFormField(
+                          controller: tutorCollegeNameController,
+                          keyboardType: TextInputType.name,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            tutorCollegeNameController.text = value!;
+                            //debugPrint(emailController.text);
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.keyboard),
+                            hintText: 'Tutor\'s Ex-college Name',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                          ),
+                        ),
 
                         const SizedBox(
                           height: 30,
                         ),
+
                         TextFormField(
                           controller: registrationNoController,
                           keyboardType: TextInputType.number,
@@ -202,22 +238,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        /*TextFormField(
-                          controller: genderController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            deptController.text = value!;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.perm_identity),
-                            hintText: 'Tutor\'s Gender',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),*/
+                        
                         DropdownButtonFormField(
                           
                           onChanged: (value) {
@@ -244,6 +265,9 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           obscureText: true,
                           controller: tutorPasswordController,
                           keyboardType: TextInputType.name,
+
+                          //password should be at least 6 character
+
                           validator: (value) {
                             RegExp regex = RegExp(r'^.{6,}$');
                             if (value!.isEmpty) {
@@ -294,6 +318,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        //added this row for registration button
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -346,6 +372,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     );
   }
 
+//this method is used for signup for tutors
+
   void signUp2(String email, String password) async {
     if (_formkey.currentState()!.validate()) {
       await _auth
@@ -357,6 +385,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     }
   }
 
+//need this function for dropdownformfield
     DropdownMenuItem<String> buildMenuItem(String item) {
     return DropdownMenuItem(
       child: Text(item),
@@ -364,6 +393,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     );
   }
 
+  //sending data to firebase firestore and save it there
   postDetailsFirestoreForTutor() async {
     //calling firestore
     //calling user model
@@ -382,6 +412,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     tutorModel.registrationNumber = registrationNoController.text;
     tutorModel.gender = _selectedGender;
     tutorModel.mobileno = tutorsMobilenoController.text;
+    tutorModel.tutorCollegeName=tutorCollegeNameController.text;
 
     await firebaseFirestore
         .collection("tutors")

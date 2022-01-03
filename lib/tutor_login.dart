@@ -15,6 +15,7 @@ class TutorLogin extends StatefulWidget {
   _TutorLoginState createState() => _TutorLoginState();
 }
 
+//this class is for tutor login
 class _TutorLoginState extends State<TutorLogin> {
   final _formKey2 = GlobalKey<FormState>();
 
@@ -47,6 +48,9 @@ class _TutorLoginState extends State<TutorLogin> {
           child: Stack(
             children: [
               Center(
+
+                //here email and password will be taken and then it will be matched with the saved data
+                //if matched then one will get access.
                 child: Container(
                     padding: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height * 0.1,
@@ -90,6 +94,8 @@ class _TutorLoginState extends State<TutorLogin> {
                         TextFormField(
                           obscureText: true,
                           controller: passwordControllertutor,
+
+                          //checks whether password is given or not
                            validator: (value) {
                             RegExp regex = RegExp(r'^.{6,}$');
                             if (value!.isEmpty) {
@@ -118,6 +124,8 @@ class _TutorLoginState extends State<TutorLogin> {
                         const SizedBox(
                           height: 50,
                         ),
+
+                        //this is row is for submit button
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -159,6 +167,7 @@ class _TutorLoginState extends State<TutorLogin> {
     );
   }
 
+//this method checks given value matches or not
   void signIn2(String email, String password) async {
     try {
       if (_formKey2.currentState() != null &&
