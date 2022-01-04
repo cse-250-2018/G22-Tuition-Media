@@ -5,6 +5,8 @@ import 'package:tuitionmedia/parent_registration.dart';
 import 'package:tuitionmedia/tutor_login.dart';
 import 'package:tuitionmedia/tutor_registration.dart';
 
+import 'sustmailrefer_scene.dart';
+
 class InitialScene extends StatefulWidget {
   const InitialScene({Key? key}) : super(key: key);
 
@@ -136,7 +138,7 @@ class _InitialSceneState extends State<InitialScene> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const ParentRegistration()),
+                                      const SustMailReferenceScene()),
                             );
                           },
                           child: const Text(

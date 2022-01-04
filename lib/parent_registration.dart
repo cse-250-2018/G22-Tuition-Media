@@ -32,7 +32,6 @@ class _ParentRegistrationState extends State<ParentRegistration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.green[300],
       appBar: AppBar(
         backgroundColor: Colors.brown[900],
         title: Text(
