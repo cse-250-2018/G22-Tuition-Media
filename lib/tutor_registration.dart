@@ -298,10 +298,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                                   Fluttertoast.showToast(
                                       msg: "Please wait for a while",
                                       toastLength: Toast.LENGTH_LONG,
-                                      // gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
-                                      // backgroundColor: Colors.green,
-                                      // textColor: Colors.white,
                                       fontSize: 16.0);
                                   signUp2(sustMailController.text,
                                       tutorPasswordController.text);
@@ -311,8 +308,6 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                                       toastLength: Toast.LENGTH_LONG,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
-                                      // backgroundColor: Colors.red,
-                                      // textColor: Colors.white,
                                       fontSize: 16.0);
                                 }
                               },

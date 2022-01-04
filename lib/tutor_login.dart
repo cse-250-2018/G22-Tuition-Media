@@ -129,8 +129,6 @@ class _TutorLoginState extends State<TutorLogin> {
                                   toastLength: Toast.LENGTH_LONG,
                                   // gravity: ToastGravity.CENTER,
                                   timeInSecForIosWeb: 1,
-                                  // backgroundColor: Colors.green[400],
-                                  //  textColor: Colors.white,
                                   fontSize: 16.0);
                               pref.setString(
                                   "email", sustmailControllerlogin.text);
@@ -186,10 +184,7 @@ class _TutorLoginState extends State<TutorLogin> {
       Fluttertoast.showToast(
           msg: "Something went wrong !! try again",
           toastLength: Toast.LENGTH_LONG,
-          // gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
-          // backgroundColor: Colors.red,
-          // textColor: Colors.white,
           fontSize: 16.0);
     }
   }

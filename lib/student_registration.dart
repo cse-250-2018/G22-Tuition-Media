@@ -55,20 +55,16 @@ class _StudentRegistrationState extends State<StudentRegistration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal[300],
       appBar: AppBar(
-        backgroundColor: Colors.teal[300],
         title: const Center(
           child: Text(
             'Add new Student',
             style: TextStyle(
               fontSize: 25,
-              fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        toolbarHeight: 130,
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -86,6 +82,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         TextFormField(
                           controller: studentNameController,
                           keyboardType: TextInputType.name,
+
                           //name should be at least 3 character
                           validator: (value) {
                             RegExp regex = RegExp(r'^.{3,}$');
@@ -105,7 +102,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                             hintText: 'Student\'s Name ',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -113,7 +110,6 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                           height: 30,
                         ),
                         DropdownButtonFormField(
-                          // value: _selectedDept,
                           onChanged: (value) {
                             setState(() {
                               _selectedGenderofStudent = value.toString();
@@ -133,22 +129,6 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        /*TextFormField(
-                          controller: deptController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            deptController.text = value!;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.house_outlined),
-                            hintText: 'English/Bengali Medium',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),*/
                         DropdownButtonFormField(
                           // value: _selectedDept,
                           onChanged: (value) {
@@ -220,7 +200,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                             hintText: 'Subjects to be taught',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -236,29 +216,10 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.location_on_rounded),
-                            hintText: 'Location of students house',
+                            hintText: 'Location',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        TextFormField(
-                          controller: parentsDemandController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            parentsDemandController.text = value!;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.handyman),
-                            hintText: 'Parents demand to Tutor ',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -279,27 +240,10 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)),
                               )),
-                          hint: const Text('Tutoring day\'s in a week'),
+                          hint: const Text('Tutoring days per week'),
                           items: daysList.map(buildMenuItem).toList(),
                           isExpanded: true,
                         ),
-                        /* TextFormField(
-                          controller: tutoringDaysController,
-                          keyboardType: TextInputType.number,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            tutoringDaysController.text = value!;
-                            //debugPrint(emailController.text);
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.calendar_view_week),
-                            hintText: 'Tutoring day\'s in a week',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                            ),
-                          ),
-                        ),*/
                         const SizedBox(
                           height: 30,
                         ),
@@ -312,10 +256,10 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.money_rounded),
-                            hintText: 'Salary (in Tk)',
+                            hintText: 'Salary offered',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -331,10 +275,29 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.add_ic_call_sharp),
-                            hintText: 'Add mobile no',
+                            hintText: 'Mobile',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          controller: parentsDemandController,
+                          keyboardType: TextInputType.name,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            parentsDemandController.text = value!;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.handyman),
+                            hintText: 'Other requirements',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -350,10 +313,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                                   Fluttertoast.showToast(
                                       msg: "Wait for a While",
                                       toastLength: Toast.LENGTH_LONG,
-                                      gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.green,
-                                      textColor: Colors.white,
                                       fontSize: 16.0);
                                   //signUp3(studentNameController.text,_selectedGenderofStudent);
                                   postDetailsFirestoreForTutor();
@@ -369,12 +329,12 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                textStyle: const TextStyle(fontSize: 20),
-                                primary: Colors.black12, //background
+                                textStyle: const TextStyle(fontSize: 17),
+                                primary: Colors.brown[700], //background
                                 onPrimary: Colors.white, //foreground
 
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 30),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 10),
                               ),
                               child: (const Text('Add new student')),
                             )
