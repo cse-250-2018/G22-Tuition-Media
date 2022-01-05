@@ -39,30 +39,200 @@ class _TutorsProfileState extends State<TutorsProfile> {
     // FirebaseFirestore.instance.collection('tutors').doc();
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.brown[900],
-          //omuk's profile
-          title: const Text(
-            'Omuk\'s profile',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-            ),
-          ),
-        ),
-        body: Container(
+      appBar: AppBar(
+        backgroundColor: Colors.brown[900],
+        //omuk's profile
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
           child: Column(
             children: [
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Container(
+                    color: const Color(0x40FEDBD0),
+                    child: Icon(
+                      Icons.account_circle_rounded,
+                      size: 70,
+                      color: Colors.brown[900],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        loggedInUser.tutorName!,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 25,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 7,
+                      ),
+                      // Text(
+                      //   loggedInUser.sustMail!,
+                      //   style: const TextStyle(
+                      //     color: Colors.black54,
+                      //     fontSize: 15,
+                      //   ),
+                      // )
+                    ],
+                  )
+                ],
+              ),
               Row(
                 children: [
                   Icon(
-                    Icons.account_circle_rounded,
-                    color: Colors.brown[900],
+                    Icons.email_outlined,
+                    color: Colors.brown[300],
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    loggedInUser.sustMail!,
+                    style: const TextStyle(
+                      color: Colors.black54,
+                      fontSize: 17,
+                    ),
                   )
                 ],
-              )
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.call_outlined,
+                    color: Colors.brown[300],
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    loggedInUser.mobileno!,
+                    style: const TextStyle(
+                      // color: Color(),
+                      fontSize: 17,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              ElevatedButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.call),
+                    Text(
+                      'Call Tutor',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                onPressed: () async {
+                  //call feature
+                  var number = '${loggedInUser.mobileno}'; //set the number here
+                  bool? res = await FlutterPhoneDirectCaller.callNumber(number);
+                },
+                style: ElevatedButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 20),
+                  primary: Colors.brown[700], //background
+                  // onPrimary: Colors.white, //foreground
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    'Tutor Info',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.brown,
+                        fontSize: 20),
+                  )
+                ],
+              ),
+              const Divider(
+                thickness: 1,
+                color: Colors.black26,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Department: ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.brown[400],
+                      fontSize: 17,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(loggedInUser.dept!),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Registration no:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.brown[400],
+                      fontSize: 17,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(loggedInUser.registrationNumber!),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Gender:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.brown[400],
+                      fontSize: 17,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(loggedInUser.gender!),
+                ],
+              ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
