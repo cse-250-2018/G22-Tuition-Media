@@ -10,6 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 import 'package:tuitionmedia/DropdownItems/dept_list.dart';
+import 'package:tuitionmedia/DropdownItems/groups_list.dart';
 import 'package:tuitionmedia/DropdownItems/subject_list.dart';
 import 'package:tuitionmedia/model/tutor_model.dart';
 import 'package:tuitionmedia/verifytutor.dart';
@@ -28,6 +29,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   final _formkey = GlobalKey<FormState>();
   String _selectedDept = deptList[0];
   String _selectedGender = genderList[0];
+  String _selectedGroupbytutor = group[0];
   List<String> _selectedSubjects = [];
   String subjects = '';
 
@@ -40,6 +42,9 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   final tutorConfirmpasswordController = TextEditingController();
   final genderController = TextEditingController();
   final tutorsMobilenoController = TextEditingController();
+   //new
+  final experienceController=TextEditingController();
+  final groupofTutorController=TextEditingController();
 
   final genders = ['Male', 'Female'];
 
@@ -174,6 +179,46 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
+                        //new
+                        TextFormField(
+                          controller: experienceController,
+                          keyboardType: TextInputType.name,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            registrationNoController.text = value!;
+                          },
+                          decoration: const InputDecoration(
+                            //prefixIcon: Icon(Icons.call_rounded),
+                            hintText: 'experience',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        DropdownButtonFormField(
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedGroupbytutor = value.toString();
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              prefixIcon: Icon(Icons.alt_route),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                              )),
+                          hint: const Text('Group of Tutor'),
+                          items: group.map(buildMenuItem).toList(),
+                          isExpanded: true,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+//end new
                         TextFormField(
                           controller: tutorsMobilenoController,
                           keyboardType: TextInputType.number,
@@ -319,7 +364,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   }
 
   void signUp2(String email, String password) async {
-    if (_formkey.currentState!.validate()) {
+    if (_formkey.currentState()!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {postDetailsFirestoreForTutor()})
@@ -354,6 +399,8 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     tutorModel.registrationNumber = registrationNoController.text;
     tutorModel.gender = _selectedGender;
     tutorModel.mobileno = tutorsMobilenoController.text;
+    tutorModel.groupofTutor=_selectedGroupbytutor;
+    tutorModel.experience=experienceController.text;
 
     await firebaseFirestore
         .collection("tutors")
