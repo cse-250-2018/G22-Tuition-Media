@@ -35,7 +35,7 @@ SL | Learning Task | Description | Status | Comment
 Used Technologies
 -----------------
 - We have used dart language for this App and developed it on flutter.
-- We have used firebase for handing data.
+- We have used firebase for handling data.
 
 Implemented Features
 ---------------------
@@ -45,11 +45,14 @@ Implemented Features
      -And created Students account under parents account.
 - **We have verified both Sustmail and Gmail by sending a verification link**
 - **For security issues, we have taken the reference of an existing sustmail. if one vouch then one parent will be able to create an account.**
+- Here parents can search for Tutor and can communicate with them. And Tutors can search for Tuition and can communicate with them. 
+- Parents can see the available tutors List and could find their best suit.
+- Tutors can see other available tutors and students List. And compare their current value with others.  
 - 
 
 UnImplemented Features
 ----------------------
-tried to add 
+Tried to but was unable to implement the chat feature. 
 
 Acknowledgement
 ---------------
