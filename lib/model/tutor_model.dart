@@ -7,6 +7,9 @@ class TutorModel {
   String? gender;
   String? mobileno;
   String? subjectList;
+  String?experience;
+  String?groupofTutor;
+  String?tutorsAddress;
 
   TutorModel(
       {this.uid2,
@@ -16,7 +19,10 @@ class TutorModel {
       this.dept,
       this.gender,
       this.subjectList,
-      this.mobileno});
+      this.mobileno,
+      this.experience,
+      this.groupofTutor,
+      this.tutorsAddress});
 
   //receiving data from server
   factory TutorModel.fromMap(map) {
@@ -28,7 +34,12 @@ class TutorModel {
         registrationNumber: map['registrationNumber'],
         gender: map['gender'],
         subjectList: map['subjectList'],
-        mobileno: map['mobileno']);
+        mobileno: map['mobileno'],
+        experience: map['experience'],
+        groupofTutor: map['groupofTutor'],
+        tutorsAddress: map['tutorsAddress'],
+        );
+
   }
 
   //sending data to our server
@@ -41,7 +52,10 @@ class TutorModel {
       'registrationNumber': registrationNumber,
       'gender': gender,
       'mobileno': mobileno,
-      'subjectList': subjectList
+      'subjectList': subjectList,
+      'experience':experience,
+      'groupofTutor':groupofTutor,
+      'tutorsAddress':tutorsAddress,
     };
   }
 }

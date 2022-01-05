@@ -36,6 +36,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
   final locationController = TextEditingController();
   final parentsDemandController = TextEditingController();
   final studentmobileNoController = TextEditingController();
+ 
 
   @override
   void initState() {
