@@ -1,9 +1,11 @@
 Instructions :
 --------------
+
 - **Updating the extension**
   - Click the Extensions button in the Side Bar.
   - If the Flutter extension is shown with an available update, click the update button and then the reload button.
   - Restart VS Code.
+  - 
 - **Creating Project**
   - Open the Command Palette (Ctrl+Shift+P ) for windows,(Cmd+Shift+P on macOS).
   - Select the Flutter: New Project command and press Enter.
@@ -22,10 +24,23 @@ Handling database
 -----------------
 -**See how to SetUp Firebase on your app .[https://firebase.google.com/docs/flutter/setup?platform=ios]**
  - To get SHA key for windows :
- 
+ - create keystore file by  follow these commands :
  - 1. For creating the keystore file 
  - keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000
 
  - 2. For viewing the SHA-1 key from the keystore file that we created 
 
  - keytool -list -v -keystore "C:\Users\Shivansh Singh["Replace with your uername"]\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+
+
+#FAQ
+-----
+- **While fetching data from the database you may see some errors, there could be many reasons. To solve them   you can follow them :**
+  - one of the field data maybe NULL but you are accessing it.
+  - you might have created Field for taking input from user ,but havn't designed it in particular Model.
+  - spelling mistakes.
+  - *check vesion related problems,one versions code might not run on other version of dart*
+  - To stay up to date with flutter version you can run  *'flutter pub upgrade'* command.
+  - If any error occurs in Gradle, one might not find what's the problem. then you should open another folder    for this project and copy your assets, pubspec.yaml file and codes there.
+  - 
+
