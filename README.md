@@ -48,7 +48,6 @@ Implemented Features
 - Here parents can search for Tutor and can communicate with them. And Tutors can search for Tuition and can communicate with them. 
 - Parents can see the available tutors List and could find their best suit.
 - Tutors can see other available tutors and students List. And compare their current value with others.  
-- 
 
 UnImplemented Features
 ----------------------
@@ -66,7 +65,7 @@ Developers
 ----------
  - Group Number : 22
  - Group Name : Seekers
- - Group Members
+ - Group Members :
 ------------------------------
 Registration No | Name       | Email | cell no 
 ---------------:|:----------|:------------| :-----: | 
