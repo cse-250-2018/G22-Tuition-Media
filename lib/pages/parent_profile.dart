@@ -122,8 +122,8 @@ class _LoggedInParentState extends State<LoggedInParent> {
               },
               style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 18),
-                  primary: const Color(0xFFFEDBD0), //background
-                  onPrimary: Colors.brown[600], //foreground
+                  primary: Colors.brown, //background
+                  onPrimary: Colors.white, //foreground
                   elevation: 0,
                   padding: EdgeInsets.all(10)),
             ),

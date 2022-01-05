@@ -185,7 +185,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           keyboardType: TextInputType.name,
                           validator: (value) {},
                           onSaved: (value) {
-                            registrationNoController.text = value!;
+                            experienceController.text = value!;
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.mode_edit_outlined),
@@ -240,11 +240,11 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         ),
 
                         TextFormField(
-                          controller: experienceController,
+                          controller: tutorsAddressController,
                           keyboardType: TextInputType.name,
                           validator: (value) {},
                           onSaved: (value) {
-                            registrationNoController.text = value!;
+                            tutorsAddressController.text = value!;
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.location_city_outlined),
