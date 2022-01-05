@@ -34,10 +34,10 @@ SL | Learning Task | Description | Status | Comment
 
 Acknowledgement
 ---------------
--**Enamul Hassan Sir,Assistant Professor** 
+- **Enamul Hassan Sir,Assistant Professor** 
   -Have told us how to solve the arisen problems and what should we add to make our App more useful. 
    Thank you, sir. For showing us the right direction.
--**Mahadi Morshed,Muhit Mahmud** Whenever we were stuck you tried to help us by giving suggestions, Thanks to you both guys.
+- **Mahadi Morshed,Muhit Mahmud** Whenever we were stuck you tried to help us by giving suggestions, Thanks to you both guys.
 
 Developers
 ----------
@@ -49,4 +49,4 @@ Registration No | Name       | Email | cell no
 ---------------:|:----------|:------------| :-----: | 
 2018331004 | Ameya Debnath | ameyadebnath@gmail.com | 01716202230
 2018331050 | Raisa Fairooz | raisafairoozshafa@gmail.com | 01783382835
-- **Registration** 
+
