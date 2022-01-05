@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tuitionmedia/homepage.dart';
-import 'package:tuitionmedia/parent_registration.dart';
-import 'package:tuitionmedia/screens/tutors_list.dart';
-import 'package:tuitionmedia/tutor_login.dart';
-import 'package:tuitionmedia/tutor_registration.dart';
+import 'package:tuitionmedia/pages/parent_page.dart';
+
+
 
 class ParentLogin extends StatefulWidget {
   const ParentLogin({Key? key}) : super(key: key);
@@ -16,168 +17,168 @@ class _ParentLoginState extends State<ParentLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.brown[50],
       appBar: AppBar(
-        backgroundColor: Colors.blue[100],
-        title: const Center(
-          child: Text(
-            'Welcome to Tuition Media',
-            style: TextStyle(
-              fontSize: 25,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold,
-            ),
+        backgroundColor: Colors.brown[900],
+        title: const Text(
+          'Login as Parent',
+          style: TextStyle(
+            fontSize: 25,
+            // fontStyle: FontStyle.italic,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.bold,
           ),
         ),
-        // toolbarHeight: 150,
+
+        toolbarHeight: 90,
       ),
       body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Center(
-              child: Container(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.1,
-                      right: 35,
-                      left: 35),
-                  child: Column(
-                    children: [
-                      const TextField(
-                        decoration: InputDecoration(
-                          // fillColor: Colors.grey,
-                          //filled:true,
-                          hintText: 'Email',
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
+        child: Form(
+          key: _formKey,
+          child: Stack(
+            //newly added
+
+            children: [
+              Center(
+                child: Container(
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.1,
+                        right: 35,
+                        left: 35),
+                    child: Column(
+                      children: [
+                        emailField = TextFormField(
+                          // autofocus: false,
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              "Please enter your email";
+                            }
+                            if (!RegExp(
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                .hasMatch(value)) {
+                              return ("Please enter a valid email");
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            emailController.text = value!;
+                            //debugPrint(emailController.text);
+                          },
+                          textInputAction: TextInputAction.next,
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.mail),
+                            hintText: 'Email',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          // fillColor: Colors.grey,
-                          //filled:true,
-                          hintText: 'password',
-                          border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          controller: passwordController,
+                          validator: (value) {
+                            RegExp regex = RegExp(r'^.{6,}$');
+                            if (value!.isEmpty) {
+                              return ("Password is required for login");
+                            }
+                            if (!regex.hasMatch(value)) {
+                              return ("Enter a valid password (Min. 6 Character)");
+                            }
+                          },
+                          onSaved: (value) {
+                            passwordController.text = value!;
+                          },
+                          textInputAction: TextInputAction.done,
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.vpn_key),
+                            hintText: 'Password',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          OutlinedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Homepage()),
-                              );
-                            },
-                            style: const ButtonStyle(),
-                            child: (const Text('Log In as Parent')),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const TutorLogin()),
-                              );
-                            },
-                            child: const Text(
-                              'Log In as Tutor',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w500,
+                        const SizedBox(
+                          height: 150,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                Fluttertoast.showToast(
+                                    msg: "Wait for a While",
+                                    toastLength: Toast.LENGTH_LONG,
+                                    // gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    //  backgroundColor: Colors.blueGrey,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                signIn(emailController.text,
+                                    passwordController.text);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                textStyle: const TextStyle(fontSize: 17),
+                                primary: Colors.brown[700], //background
+                                onPrimary: Colors.white, //foreground
+
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25, vertical: 10),
                               ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ParentRegistration()),
-                              );
-                            },
-                            child: const Align(
-                              alignment: Alignment.bottomRight,
-                              child: Text(
-                                'Register as Parent',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const TutorRegistration()),
-                              );
-                            },
-                            child: const Text(
-                              'Register as Tutor',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const TutorList(),
-                                  ));
-                            },
-                            child: const Text(
-                              'See Tutors',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontStyle: FontStyle.italic,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )),
-            )
-          ],
+                              child: (const Text('Log In as Parent')),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                      ],
+                    )),
+              )
+            ],
+          ),
+
+       
         ),
       ),
     );
   }
+
+
+  void signIn(String email, String password) async {
+    try {
+      if (_formKey.currentState != null && _formKey.currentState()!.validate()) {
+        await _auth
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((uid) => {
+                  Fluttertoast.showToast(msg: "Login Successful"),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ParentPage()),
+                  )
+                })
+            .catchError((e) {
+          Fluttertoast.showToast(
+              msg:
+                  "Log in failed. The email or password that you entered is incorrect. ");
+        });
+      }
+    } catch (e) {
+      // Fluttertoast.showToast(
+      //     msg: " ",
+      //     toastLength: Toast.LENGTH_LONG,
+      //   //  gravity: ToastGravity.CENTER,
+      //     timeInSecForIosWeb: 1,
+      //     backgroundColor: Colors.red,
+      //     textColor: Colors.white,
+      //     fontSize: 16.0);
+    }
+  }
+
 }

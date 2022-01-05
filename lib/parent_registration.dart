@@ -9,6 +9,9 @@ import 'package:tuitionmedia/homepage.dart';
 import 'package:tuitionmedia/model/user_model.dart';
 import 'package:tuitionmedia/parent_login.dart';
 
+import 'package:tuitionmedia/verify.dart';
+
+
 class ParentRegistration extends StatefulWidget {
   const ParentRegistration({Key? key}) : super(key: key);
 
@@ -31,20 +34,17 @@ class _ParentRegistrationState extends State<ParentRegistration> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        backgroundColor: Colors.blue[100],
-        title: const Center(
-          child: Text(
-            'Register as Parent',
-            style: TextStyle(
-              fontSize: 25,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold,
-            ),
+        backgroundColor: Colors.brown[900],
+        title: Text(
+          'Register as Parent',
+          style: TextStyle(
+            fontSize: 25,
+            // fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        toolbarHeight: 150,
+        toolbarHeight: 90,
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -54,7 +54,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
               Center(
                 child: Container(
                     padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1,
+                        top: MediaQuery.of(context).size.height * 0.05,
                         right: 35,
                         left: 35),
                     child: Column(
@@ -71,7 +71,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                               return ("Name is required for login");
                             }
                             if (!regex.hasMatch(value)) {
-                              return ("Enter valid Name(Min. 3 Character)");
+                              return ("Enter a valid name(Min. 3 Character)");
                             }
                             return null;
                           },
@@ -83,7 +83,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                             hintText: 'Parent Name ',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -96,12 +96,12 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              "please enter your emamil";
+                              "Please enter your email";
                             }
                             if (!RegExp(
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
-                              return (" please Enter a valid Email");
+                              return ("Please enter a valid email");
                             }
                             return null;
                           },
@@ -111,10 +111,10 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.mail),
-                            hintText: 'Email: name@gmail.com',
+                            hintText: 'Email',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -127,12 +127,12 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
                             if (value!.isEmpty) {
-                              "Enter reffered SUST mail";
+                              "Enter referred SUST mail";
                             }
                             if (!RegExp(
                                     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
-                              return (" please Enter a valid SUST Email");
+                              return ("Please enter a valid SUST mail");
                             }
                             return null;
                           },
@@ -145,7 +145,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                             hintText: 'Referred SUST Mail',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -162,10 +162,11 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                             //debugPrint(emailController.text);
                           },
                           decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.call_rounded),
                             hintText: 'Mobile Number',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -182,7 +183,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                               return ("Password is required for login");
                             }
                             if (!regex.hasMatch(value)) {
-                              return ("Enter valid Password(Min. 6 Character)");
+                              return ("Enter a valid Password (Min. 6 Character)");
                             }
                           },
                           onSaved: (value) {
@@ -192,10 +193,10 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                             prefixIcon: Icon(Icons.vpn_key),
                             // fillColor: Colors.grey,
                             //filled:true,
-                            hintText: 'password',
+                            hintText: 'Password',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -210,7 +211,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                           validator: (value) {
                             if (confirmpasswordControllerparent.text !=
                                 passwordControllerparent.text) {
-                              return "password don't match";
+                              return "Password does't match";
                             }
                             return null;
                           },
@@ -219,10 +220,10 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.vpn_key),
-                            hintText: 'confirm password',
+                            hintText: 'Confirm password',
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                             ),
                           ),
                         ),
@@ -239,26 +240,30 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                                       passwordControllerparent.text);
                                 } catch (e) {
                                   Fluttertoast.showToast(
-                                      msg: "Some credential maybe misformated",
+                                      msg:
+                                          "Some credentials may be misformated.",
                                       toastLength: Toast.LENGTH_LONG,
-                                      gravity: ToastGravity.CENTER,
+                                      // gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
+                                      // backgroundColor: Colors.red,
+                                      // textColor: Colors.white,
                                       fontSize: 16.0);
                                 }
                               },
                               style: ElevatedButton.styleFrom(
                                 textStyle: const TextStyle(fontSize: 20),
-                                primary: Colors.black12, //background
+                                primary: Colors.brown[700], //background
                                 onPrimary: Colors.white, //foreground
 
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 30),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
                               ),
                               child: (const Text('Register as Parent')),
                             )
                           ],
+                        ),
+                        const SizedBox(
+                          height: 30,
                         ),
                       ],
                     )),
@@ -282,12 +287,12 @@ class _ParentRegistrationState extends State<ParentRegistration> {
       }
     } catch (e) {
       Fluttertoast.showToast(
-          msg: "you have gave wrong information",
+          msg: "Something went wrong.",
           toastLength: Toast.LENGTH_LONG,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
+          // backgroundColor: Colors.red,
+          // textColor: Colors.white,
           fontSize: 16.0);
     }
   }
@@ -314,11 +319,11 @@ class _ParentRegistrationState extends State<ParentRegistration> {
         .doc(user.uid)
         .set(userModel.toMap());
 
-    Fluttertoast.showToast(msg: "account created successfully");
+    //Fluttertoast.showToast(msg: "account created successfully");
 
     Navigator.pushAndRemoveUntil(
         (context),
-        MaterialPageRoute(builder: (context) => const ParentLogin()),
+        MaterialPageRoute(builder: (context) => const VerifyScreen()),
         (route) => false);
   }
 }

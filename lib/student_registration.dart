@@ -1,67 +1,72 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:tuitionmedia/model/user_model.dart';
 
-import 'package:tuitionmedia/DropdownItems/dept_list.dart';
-import 'package:tuitionmedia/DropdownItems/groups_list.dart';
-import 'package:tuitionmedia/DropdownItems/subject_list.dart';
-import 'package:tuitionmedia/model/tutor_model.dart';
-import 'package:tuitionmedia/verifytutor.dart';
-import 'DropdownItems/dept_list.dart';
+import 'DropdownItems/days_per_week.dart';
 import 'DropdownItems/gender_list.dart';
+import 'DropdownItems/groups_list.dart';
+import 'DropdownItems/medium_list.dart';
+import 'DropdownItems/class_list.dart';
+import 'model/student_model.dart';
 
-class TutorRegistration extends StatefulWidget {
-  const TutorRegistration({Key? key}) : super(key: key);
+class StudentRegistration extends StatefulWidget {
+  const StudentRegistration({Key? key}) : super(key: key);
 
   @override
-  _TutorRegistrationState createState() => _TutorRegistrationState();
+  _StudentRegistrationState createState() => _StudentRegistrationState();
 }
 
-class _TutorRegistrationState extends State<TutorRegistration> {
+class _StudentRegistrationState extends State<StudentRegistration> {
   final _auth = FirebaseAuth.instance;
   final _formkey = GlobalKey<FormState>();
-  String _selectedDept = deptList[0];
-  String _selectedGender = genderList[0];
-  String _selectedGroupbytutor = group[0];
-  List<String> _selectedSubjects = [];
-  String subjects = '';
+  String _selectedMedium = medium[0];
+  String _selectedGroup = group[0];
+  String _selectedGenderofStudent = genderList[0];
+  String _selectedClass = classList[0];
+  String _selectedDays = daysList[0];
+  User? user = FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser = UserModel();
 
 //editing controller
-  final tutorNameController = TextEditingController();
-  final sustMailController = TextEditingController();
-  final deptController = TextEditingController();
-  final registrationNoController = TextEditingController();
-  final tutorPasswordController = TextEditingController();
-  final tutorConfirmpasswordController = TextEditingController();
-  final genderController = TextEditingController();
-  final tutorsMobilenoController = TextEditingController();
-   //new
-  final experienceController=TextEditingController();
-  final tutorsAddressController=TextEditingController();
+  final studentNameController = TextEditingController();
+  final subjectController = TextEditingController();
+  final salaryController = TextEditingController();
+  final locationController = TextEditingController();
+  final parentsDemandController = TextEditingController();
+  final studentmobileNoController = TextEditingController();
+ 
 
-  final genders = ['Male', 'Female'];
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      loggedInUser = UserModel.fromMap(value.data());
+      print(loggedInUser);
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.teal[300],
       appBar: AppBar(
-        backgroundColor: Colors.brown[900],
-        title: const Text(
-          'Register as Tutor',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
+        title: const Center(
+          child: Text(
+            'Add new Student',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-        toolbarHeight: 90,
+        toolbarHeight: 80,
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -77,8 +82,9 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                     child: Column(
                       children: [
                         TextFormField(
-                          controller: tutorNameController,
+                          controller: studentNameController,
                           keyboardType: TextInputType.name,
+
                           //name should be at least 3 character
                           validator: (value) {
                             RegExp regex = RegExp(r'^.{3,}$');
@@ -91,105 +97,11 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             return null;
                           },
                           onSaved: (value) {
-                            tutorNameController.text = value!;
+                            studentNameController.text = value!;
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.account_circle),
-                            hintText: 'Tutor\'s Name ',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        TextFormField(
-                          controller: sustMailController,
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              "Please enter your email";
-                            }
-                            if (!RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                .hasMatch(value)) {
-                              return (" Please enter a valid SUST Mail");
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            sustMailController.text = value!;
-                            //debugPrint(emailController.text);
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.mail),
-                            hintText: 'SUST Student Mail',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        //
-
-                        DropdownButtonFormField(
-                          // value: _selectedDept,
-                          onChanged: (value) {
-                            setState(() {
-                              _selectedDept = value.toString();
-                            });
-                          },
-                          decoration: const InputDecoration(
-                              // icon: Icon(Icons.home),
-                              prefixIcon: Icon(Icons.home),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                              )),
-                          hint: const Text('Department'),
-                          items: deptList.map(buildMenuItem).toList(),
-                          isExpanded: true,
-                        ),
-
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        TextFormField(
-                          controller: registrationNoController,
-                          keyboardType: TextInputType.number,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            registrationNoController.text = value!;
-                            //debugPrint(emailController.text);
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.keyboard),
-                            hintText: 'Registration Number',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        //new
-                        TextFormField(
-                          controller: experienceController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            registrationNoController.text = value!;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.mode_edit_outlined),
-                            hintText: 'Experience',
+                            hintText: 'Student\'s Name ',
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
@@ -202,68 +114,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         DropdownButtonFormField(
                           onChanged: (value) {
                             setState(() {
-                              _selectedGroupbytutor = value.toString();
-                            });
-                          },
-                          decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.alt_route),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                              )),
-                          hint: const Text('Group of Tutor'),
-                          items: group.map(buildMenuItem).toList(),
-                          isExpanded: true,
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-//end new
-                        TextFormField(
-                          controller: tutorsMobilenoController,
-                          keyboardType: TextInputType.number,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            registrationNoController.text = value!;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.call_rounded),
-                            hintText: 'Mobile number',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-
-                        TextFormField(
-                          controller: experienceController,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {},
-                          onSaved: (value) {
-                            registrationNoController.text = value!;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.location_city_outlined),
-                            hintText: 'Tutors Current Address',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-
-                        DropdownButtonFormField(
-                          // value: _selectedDept,
-                          onChanged: (value) {
-                            setState(() {
-                              _selectedGender = value.toString();
+                              _selectedGenderofStudent = value.toString();
                             });
                           },
                           decoration: const InputDecoration(
@@ -273,33 +124,82 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10.0)),
                               )),
-                          hint: const Text('Gender'),
+                          hint: const Text('Student\'s Gender'),
                           items: genderList.map(buildMenuItem).toList(),
                           isExpanded: true,
                         ),
-
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        DropdownButtonFormField(
+                          // value: _selectedDept,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedMedium = value.toString();
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              // icon: Icon(Icons.home),
+                              prefixIcon: Icon(Icons.book),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                              )),
+                          hint: const Text('Medium'),
+                          items: medium.map(buildMenuItem).toList(),
+                          isExpanded: true,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        DropdownButtonFormField(
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedGroup = value.toString();
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              prefixIcon: Icon(Icons.alt_route),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                              )),
+                          hint: const Text('Group'),
+                          items: group.map(buildMenuItem).toList(),
+                          isExpanded: true,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        DropdownButtonFormField(
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedClass = value.toString();
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              prefixIcon: Icon(Icons.alt_route),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                              )),
+                          hint: const Text('Class'),
+                          items: classList.map(buildMenuItem).toList(),
+                          isExpanded: true,
+                        ),
                         const SizedBox(
                           height: 30,
                         ),
                         TextFormField(
-                          obscureText: true,
-                          controller: tutorPasswordController,
+                          controller: subjectController,
                           keyboardType: TextInputType.name,
-                          validator: (value) {
-                            RegExp regex = RegExp(r'^.{6,}$');
-                            if (value!.isEmpty) {
-                              return ("Password is required for login");
-                            }
-                            if (!regex.hasMatch(value)) {
-                              return ("Enter valid Password(Min. 6 Character)");
-                            }
-                          },
+                          validator: (value) {},
                           onSaved: (value) {
-                            tutorPasswordController.text = value!;
+                            subjectController.text = value!;
                           },
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.vpn_key),
-                            hintText: 'Password',
+                            prefixIcon: Icon(Icons.book_online_outlined),
+                            hintText: 'Subjects to be taught',
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
@@ -310,22 +210,15 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           height: 30,
                         ),
                         TextFormField(
-                          obscureText: true,
-                          controller: tutorConfirmpasswordController,
+                          controller: locationController,
                           keyboardType: TextInputType.name,
-                          validator: (value) {
-                            if (tutorConfirmpasswordController.text !=
-                                tutorPasswordController.text) {
-                              return "Password doesn't match";
-                            }
-                            return null;
-                          },
+                          validator: (value) {},
                           onSaved: (value) {
-                            tutorConfirmpasswordController.text = value!;
+                            locationController.text = value!;
                           },
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.vpn_key),
-                            hintText: 'Confirm password',
+                            prefixIcon: Icon(Icons.location_on_rounded),
+                            hintText: 'Location',
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
@@ -335,7 +228,84 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-
+                        DropdownButtonFormField(
+                          // value: _selectedDept,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedDays = value.toString();
+                            });
+                          },
+                          decoration: const InputDecoration(
+                              // icon: Icon(Icons.home),
+                              prefixIcon: Icon(Icons.perm_identity),
+                              border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                              )),
+                          hint: const Text('Tutoring days per week'),
+                          items: daysList.map(buildMenuItem).toList(),
+                          isExpanded: true,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          controller: salaryController,
+                          keyboardType: TextInputType.number,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            salaryController.text = value!;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.money_rounded),
+                            hintText: 'Salary offered',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          controller: studentmobileNoController,
+                          keyboardType: TextInputType.number,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            studentmobileNoController.text = value!;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.add_ic_call_sharp),
+                            hintText: 'Mobile',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextFormField(
+                          controller: parentsDemandController,
+                          keyboardType: TextInputType.name,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            parentsDemandController.text = value!;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.handyman),
+                            hintText: 'Other requirements',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -343,32 +313,31 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                               onPressed: () {
                                 try {
                                   Fluttertoast.showToast(
-
-                                      msg: "Please wait for a while",
+                                      msg: "Wait for a While",
                                       toastLength: Toast.LENGTH_LONG,
                                       timeInSecForIosWeb: 1,
-
                                       fontSize: 16.0);
-                                  signUp2(sustMailController.text,
-                                      tutorPasswordController.text);
+                                  //signUp3(studentNameController.text,_selectedGenderofStudent);
+                                  postDetailsFirestoreForTutor();
                                 } catch (e) {
                                   Fluttertoast.showToast(
-                                      msg: "Some credentials maybe misformated",
+                                      msg: "Some credential maybe misformated",
                                       toastLength: Toast.LENGTH_LONG,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
                                       fontSize: 16.0);
+                                  Navigator.pop(context);
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                textStyle: const TextStyle(fontSize: 20),
+                                textStyle: const TextStyle(fontSize: 17),
                                 primary: Colors.brown[700], //background
                                 onPrimary: Colors.white, //foreground
 
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 25, vertical: 10),
                               ),
-                              child: (const Text('Register as Tutor')),
+                              child: (const Text('Add new student')),
                             )
                           ],
                         ),
@@ -385,17 +354,17 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     );
   }
 
-  void signUp2(String email, String password) async {
+  // used student name and gender instead of email and password
+/*void signUp3(String studentname,String gender) async {
     if (_formkey.currentState()!.validate()) {
       await _auth
-          .createUserWithEmailAndPassword(email: email, password: password)
+          .createUserWithEmailAndPassword(email: studentname, password: gender)
           .then((value) => {postDetailsFirestoreForTutor()})
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
       });
     }
-  }
-
+  }*/
   DropdownMenuItem<String> buildMenuItem(String item) {
     return DropdownMenuItem(
       child: Text(item),
@@ -411,42 +380,46 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
 
-    TutorModel tutorModel = TutorModel();
+    StudentModel studentModel = StudentModel();
 
     //writing all the values
-    tutorModel.sustMail = user!.email;
-    tutorModel.uid2 = user.uid;
-    tutorModel.tutorName = tutorNameController.text;
-    tutorModel.dept = _selectedDept;
-    tutorModel.registrationNumber = registrationNoController.text;
-    tutorModel.gender = _selectedGender;
-    tutorModel.mobileno = tutorsMobilenoController.text;
-    tutorModel.groupofTutor=_selectedGroupbytutor;
-    tutorModel.experience=experienceController.text;
-    tutorModel.tutorsAddress=tutorsAddressController.text;
 
-    await firebaseFirestore
-        .collection("tutors")
-        .doc(user.uid)
-        .set(tutorModel.toMap());
+    studentModel.uid3 = user!.uid;
+    studentModel.studentName = studentNameController.text;
+    studentModel.studentGender = _selectedGenderofStudent;
+    studentModel.medium = _selectedMedium;
+    studentModel.group = _selectedGroup;
+    studentModel.studentClass = _selectedClass;
+    studentModel.subjects = subjectController.text;
+    studentModel.location = locationController.text;
+    studentModel.parentsDemand = locationController.text;
+    studentModel.tutoringDays = _selectedDays;
+    studentModel.salary = salaryController.text;
+    studentModel.addMobileNo = studentmobileNoController.text;
+
+    try {
+      String ud = '${user.uid}${loggedInUser.count + 1}';
+      await firebaseFirestore
+          .collection("students")
+          .doc(ud)
+          .set(studentModel.toMap());
+      loggedInUser.count++;
+      await firebaseFirestore
+          .collection("users")
+          .doc(user.uid)
+          .set(loggedInUser.toMap());
+
+      Fluttertoast.showToast(msg: "account created successfully");
+
+      // Navigator.pushAndRemoveUntil(
+      // (context),
+      // MaterialPageRoute(builder: (context) => const AllStudentsProfile()),
+      // (route) => false);
+
+    } catch (e) {
+      Fluttertoast.showToast(msg: "Error Occurred");
+    }
 
     //Fluttertoast.showToast(msg: "account created successfully");
-
-    Navigator.pushAndRemoveUntil(
-        (context),
-        MaterialPageRoute(builder: (context) => const SustMailVerify()),
-        (route) => false);
   }
-//   void _showMultiSelectDialog(BuildContext context) async {
-//   await showDialog(
-//     context: context,
-//     builder: (ctx) {
-//       return  MultiSelectDialog(
-//         items: subjectsList.map((e) => MultiSelectItem(e, e)).toList(),
-//         initialValue: _selectedAnimals,
-//         onConfirm: (values) {...},
-//       );
-//     },
-//   );
-// }
 }
