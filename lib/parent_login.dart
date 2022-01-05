@@ -1,9 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tuitionmedia/homepage.dart';
 import 'package:tuitionmedia/pages/parent_page.dart';
+
+
 
 class ParentLogin extends StatefulWidget {
   const ParentLogin({Key? key}) : super(key: key);
@@ -13,17 +14,6 @@ class ParentLogin extends StatefulWidget {
 }
 
 class _ParentLoginState extends State<ParentLogin> {
-  //form key
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  //editing controller
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  final _auth = FirebaseAuth.instance;
-
-  set emailField(TextFormField emailField) {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +28,7 @@ class _ParentLoginState extends State<ParentLogin> {
             fontWeight: FontWeight.bold,
           ),
         ),
+
         toolbarHeight: 90,
       ),
       body: SingleChildScrollView(
@@ -151,10 +142,13 @@ class _ParentLoginState extends State<ParentLogin> {
               )
             ],
           ),
+
+       
         ),
       ),
     );
   }
+
 
   void signIn(String email, String password) async {
     try {
@@ -185,4 +179,5 @@ class _ParentLoginState extends State<ParentLogin> {
       //     fontSize: 16.0);
     }
   }
+
 }
