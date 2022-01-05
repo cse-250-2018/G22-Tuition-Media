@@ -31,3 +31,21 @@ SL | Learning Task | Description | Status | Comment
 1 | Android | Basics of Native Android Framework | ![](https://img.shields.io/badge/Android%20Basics-In%20Progress-blue)
 2 | Database | Firebase Basics | ![](https://img.shields.io/badge/Firebase-May%2028-orange) | 2018331004
 3 | Java | Java as Core Language | ![](https://img.shields.io/badge/Java-Completed-green)
+
+Acknowledgement
+---------------
+**Enamul Hassan Sir,Assistant Professor** 
+  -Have told us how to solve the arisen problems and what should we add to make our App more useful. 
+   Thank you, sir. For showing us the right direction.
+**Mahadi Morshed,Muhit Mahmud** Whenever we were stuck you tried to help us by giving suggestions, Thanks to you both guys.
+
+Developers
+----------
+ - Group Number : 22
+ - Group Name : Seekers
+ - Group Members
+------------------------------
+Registration No | Name       | Email | cell no 
+---------------:|:----------|:------------| :-----: | 
+2018331004 | Ameya Debnath | ameyadebnath@gmail.com | 01716202230
+2018331050 | Raisa Fairooz | raisafairoozshafa@gmail.com | 01783382835
