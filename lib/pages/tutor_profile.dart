@@ -53,14 +53,13 @@ class _TutorsProfileState extends State<TutorsProfile> {
         body: Container(
           child: Column(
             children: [
-              Text(loggedInUser.tutorName!),
-              ElevatedButton(
-                child: Text('See all students'),
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const BrowseStudents(),
-                  ),
-                ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.account_circle_rounded,
+                    color: Colors.brown[900],
+                  )
+                ],
               )
             ],
           ),

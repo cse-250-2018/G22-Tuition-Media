@@ -1,37 +1,39 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:tuitionmedia/pages/browse_students.dart';
-import 'package:tuitionmedia/pages/initial_page.dart';
-import 'package:tuitionmedia/pages/parent_profile.dart';
+import 'package:tuitionmedia/pages/browse_tutors.dart';
+import 'package:tuitionmedia/pages/loggedin_tutor.dart';
+import 'package:tuitionmedia/pages/start_page.dart';
 
-import 'browse_tutors.dart';
-
-class ParentPage extends StatefulWidget {
-  const ParentPage({Key? key}) : super(key: key);
+class AppHome extends StatefulWidget {
+  const AppHome({Key? key}) : super(key: key);
 
   @override
   AppHomeState createState() => AppHomeState();
 }
 
-class AppHomeState extends State<ParentPage> {
+class AppHomeState extends State<AppHome> {
   int currentIndex = 0;
   final screens = [
-    LoggedInParent(),
+    LoggedInTutor(),
+    BrowseStudents(),
     BrowseTutors(),
-    InitialPage(),
   ];
   AppHomeState();
-
-  // List<Meeting> specialEvents = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: IndexedStack(
         index: currentIndex,
         children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        // backgroundColor: Colors.black,
         unselectedItemColor: Colors.grey[800],
+        // selectedItemColor: Colors.white,
         showUnselectedLabels: false,
         currentIndex: currentIndex,
         elevation: 15,
@@ -41,17 +43,18 @@ class AppHomeState extends State<ParentPage> {
           });
         },
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+              backgroundColor: Colors.blueAccent),
+          // ignore: prefer_const_constructors
           BottomNavigationBarItem(
             icon: Icon(Icons.schedule),
-            label: 'T&A',
+            label: 'All Students',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            label: 'Profile',
+            label: 'See Tutors',
           ),
         ],
       ),

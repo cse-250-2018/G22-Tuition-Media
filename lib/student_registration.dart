@@ -65,6 +65,7 @@ class _StudentRegistrationState extends State<StudentRegistration> {
             ),
           ),
         ),
+        toolbarHeight: 80,
       ),
       body: SingleChildScrollView(
         child: Form(

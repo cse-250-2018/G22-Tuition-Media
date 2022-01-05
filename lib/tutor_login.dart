@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tuitionmedia/model/tutor_model.dart';
+import 'package:tuitionmedia/pages/tutor_page.dart';
 import 'package:tuitionmedia/pages/tutor_profile.dart';
 
 import 'package:tuitionmedia/tutor_registration.dart';
@@ -173,7 +174,7 @@ class _TutorLoginState extends State<TutorLogin> {
 
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TutorsProfile(user.uid)),
+            MaterialPageRoute(builder: (context) => AppHome()),
           );
         }).catchError((e) {
           Fluttertoast.showToast(

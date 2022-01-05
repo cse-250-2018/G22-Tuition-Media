@@ -270,24 +270,6 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        Container(
-                          color: Colors.black,
-                          height: 40,
-                          child: MultiSelectDialog<String>(
-                            items: subjectsList
-                                .map((e) => MultiSelectItem(e, e))
-                                .toList(),
-                            initialValue: _selectedSubjects,
-                            onConfirm: (values) {
-                              setState(() {
-                                subjects = values.toString();
-                                _selectedSubjects = values;
-                                print(values);
-                                print(subjects);
-                              });
-                            },
-                          ),
-                        ),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

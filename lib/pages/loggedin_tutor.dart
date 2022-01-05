@@ -1,55 +1,43 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import 'package:tuitionmedia/model/student_model.dart';
 import 'package:tuitionmedia/model/tutor_model.dart';
-import 'package:tuitionmedia/model/user_model.dart';
 
-class LoggedInParent extends StatefulWidget {
-  const LoggedInParent({Key? key}) : super(key: key);
+import 'browse_students.dart';
+
+class LoggedInTutor extends StatefulWidget {
+  LoggedInTutor();
 
   @override
-  State<LoggedInParent> createState() => _LoggedInParentState();
+  State<LoggedInTutor> createState() => _TutorsProfileState();
 }
 
-class _LoggedInParentState extends State<LoggedInParent> {
+class _TutorsProfileState extends State<LoggedInTutor> {
   User? user = FirebaseAuth.instance.currentUser;
-  UserModel loggedInUser = UserModel();
-  List<StudentModel> std = [];
-  String name = '';
+  TutorModel loggedInTutor = TutorModel();
 
   @override
   void initState() {
     super.initState();
-    print(user!.uid);
 
     FirebaseFirestore.instance
-        .collection('users')
+        .collection('tutors')
         .doc(user!.uid)
         .get()
         .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
-      print(loggedInUser.parentName);
-      name = loggedInUser.parentName!;
+      loggedInTutor = TutorModel.fromMap(value.data());
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // final Stream<QuerySnapshot> tutor =
-    // FirebaseFirestore.instance.collection('tutors').doc();
-    print('build');
-
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
         child: Column(
           children: [
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Row(
@@ -58,7 +46,7 @@ class _LoggedInParentState extends State<LoggedInParent> {
                   color: const Color(0x40FEDBD0),
                   child: Icon(
                     Icons.account_circle_rounded,
-                    size: 60,
+                    size: 70,
                     color: Colors.brown[900],
                   ),
                 ),
@@ -69,19 +57,20 @@ class _LoggedInParentState extends State<LoggedInParent> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      loggedInTutor.tutorName!,
                       style: const TextStyle(
-                        //fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                         fontSize: 25,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
+                    const SizedBox(
+                      height: 7,
                     ),
                     Text(
-                      loggedInUser.email!,
-                      style: TextStyle(
+                      loggedInTutor.sustMail!,
+                      style: const TextStyle(
                         color: Colors.black54,
+                        fontSize: 15,
                       ),
                     )
                   ],
@@ -94,6 +83,18 @@ class _LoggedInParentState extends State<LoggedInParent> {
             const Divider(
               thickness: 1,
               color: Colors.black26,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Tutor Info',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.brown,
+                  ),
+                )
+              ],
             ),
           ],
         ),

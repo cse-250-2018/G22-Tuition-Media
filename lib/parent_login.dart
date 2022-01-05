@@ -166,8 +166,7 @@ class _ParentLoginState extends State<ParentLogin> {
                   Fluttertoast.showToast(msg: "Login Successful"),
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const ParentProfile()),
+                    MaterialPageRoute(builder: (context) => const ParentPage()),
                   )
                 })
             .catchError((e) {

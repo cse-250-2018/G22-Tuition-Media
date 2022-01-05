@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tuitionmedia/initial_scene.dart';
+import 'package:tuitionmedia/pages/start_page.dart';
 import 'package:tuitionmedia/parent_login.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blueGrey,
           fontFamily: 'Inter',
           buttonTheme: ButtonThemeData(
-            buttonColor: Colors.brown[700],
+            buttonColor: const Color(0xFFFEDBD0),
             splashColor: Colors.brown[600],
           ),
           appBarTheme: AppBarTheme(
@@ -38,41 +39,44 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const SplashScreen(),
-        routes: {'initialscene': (context) => const InitialScene()});
+        home: Scaffold(
+          body: StartPage(),
+          backgroundColor: Colors.white,
+        ),
+        routes: {'startpage': (context) => const StartPage()});
   }
 }
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+// class SplashScreen extends StatefulWidget {
+//   const SplashScreen({Key? key}) : super(key: key);
 
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
+//   @override
+//   _SplashScreenState createState() => _SplashScreenState();
+// }
 
-class _SplashScreenState extends State<SplashScreen> {
-  void startTimer() {
-    Timer(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacementNamed('initialscene');
-    });
-  }
+// class _SplashScreenState extends State<SplashScreen> {
+//   void startTimer() {
+//     Timer(const Duration(seconds: 2), () {
+//       Navigator.of(context).pushReplacementNamed('initialscene');
+//     });
+//   }
 
-  @override
-  void initState() {
-    super.initState();
-    startTimer();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     startTimer();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.grey,
-        body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('assets/launch_screen.png'),
-            fit: BoxFit.cover,
-          )),
-        ));
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         backgroundColor: Colors.grey,
+//         body: Container(
+//           decoration: const BoxDecoration(
+//               image: DecorationImage(
+//             image: AssetImage('assets/launch_screen.png'),
+//             fit: BoxFit.cover,
+//           )),
+//         ));
+//   }
+// }

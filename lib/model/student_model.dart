@@ -45,4 +45,21 @@ class StudentModel {
       'addMobileNo': addMobileNo
     };
   }
+
+  factory StudentModel.fromMap(map) {
+    return StudentModel(
+      uid3: map['uid3'],
+      studentName: map['studentName'],
+      studentGender: map['studentGender'],
+      medium: map['medium'],
+      group: map['group'],
+      studentClass: map['studentClass'],
+      subjects: map['subjects'],
+      location: map['location'],
+      parentsDemand: map['parentsDemand'],
+      tutoringDays: map['tutoringDays'],
+      salary: map['salary'],
+      addMobileNo: map['addMobileNo'],
+    );
+  }
 }

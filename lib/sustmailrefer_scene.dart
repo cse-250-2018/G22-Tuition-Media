@@ -97,8 +97,6 @@ class _SustMailReferenceSceneState extends State<SustMailReferenceScene> {
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.CENTER,
                                     timeInSecForIosWeb: 1,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
                                     fontSize: 16.0);
                                 try {
                                   signUp(refferedsustmailController1.text,
@@ -107,10 +105,7 @@ class _SustMailReferenceSceneState extends State<SustMailReferenceScene> {
                                   Fluttertoast.showToast(
                                       msg: "Some credential maybe misformated",
                                       toastLength: Toast.LENGTH_LONG,
-                                      gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
                                       fontSize: 16.0);
                                 }
                               },
