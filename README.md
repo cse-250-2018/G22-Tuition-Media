@@ -39,11 +39,13 @@ Used Technologies
 
 Implemented Features
 ---------------------
-- **We have created 3 types of account**
- - For Parents
- - for Tutors
- - And Students account under parents account
- - **We have verified both Sustmail and Gmail by sending a verification link**
+- **We have created 2 types of account**
+  - For Parents
+  - for Tutors
+     -And created Students account under parents account.
+- **We have verified both Sustmail and Gmail by sending a verification link**
+- **For security issues, we have taken the reference of an existing sustmail. if one vouch then one parent will be able to create an account. **
+- 
 
 UnImplemented Features
 ----------------------
