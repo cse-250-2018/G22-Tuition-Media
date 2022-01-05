@@ -55,10 +55,10 @@ Tried to but was unable to implement the chat feature.
 
 Acknowledgement
 ---------------
-- **Enamul Hassan Sir,Assistant Professor** 
+- **Enamul Hassan Sir, Assistant Professor** 
   - Have told us how to solve the arisen problems and what should we add to make our App more useful. 
    Thank you, sir. For showing us the right direction.
-- **Mahadi Morshed,Muhit Mahmud** 
+- **Mahdi Murshed, Muhit Mahmud Al Farhan** 
   - Whenever we were stuck you tried to help us by giving suggestions, Thanks to you both guys.
 
 Developers
