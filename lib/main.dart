@@ -47,36 +47,42 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// class SplashScreen extends StatefulWidget {
-//   const SplashScreen({Key? key}) : super(key: key);
+ class SplashScreen extends StatefulWidget {
+   const SplashScreen({Key? key}) : super(key: key);
 
-//   @override
-//   _SplashScreenState createState() => _SplashScreenState();
-// }
+   @override
+   _SplashScreenState createState() => _SplashScreenState();
+}
 
-// class _SplashScreenState extends State<SplashScreen> {
-//   void startTimer() {
-//     Timer(const Duration(seconds: 2), () {
-//       Navigator.of(context).pushReplacementNamed('initialscene');
-//     });
-//   }
+class _SplashScreenState extends State<SplashScreen> {
+  void startTimer() {
+    Timer(const Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacementNamed('initialscene');
+    });
+  }
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     startTimer();
-//   }
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         backgroundColor: Colors.grey,
-//         body: Container(
-//           decoration: const BoxDecoration(
-//               image: DecorationImage(
-//             image: AssetImage('assets/launch_screen.png'),
-//             fit: BoxFit.cover,
-//           )),
-//         ));
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SizedBox(
+            height: 200,
+            child: Image.asset(
+              "assets/logo.jpg",
+              fit: BoxFit.contain,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

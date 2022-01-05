@@ -17,6 +17,7 @@ class LoggedInParent extends StatefulWidget {
 
 class _LoggedInParentState extends State<LoggedInParent> {
   User? user = FirebaseAuth.instance.currentUser;
+  
   UserModel loggedInUser = UserModel();
   List<StudentModel> std = [];
   String name = '';
