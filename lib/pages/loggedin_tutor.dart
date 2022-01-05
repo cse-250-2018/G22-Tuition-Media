@@ -66,23 +66,55 @@ class _TutorsProfileState extends State<LoggedInTutor> {
                     const SizedBox(
                       height: 7,
                     ),
-                    Text(
-                      loggedInTutor.sustMail!,
-                      style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 15,
-                      ),
-                    )
+                    // Text(
+                    //   loggedInTutor.sustMail!,
+                    //   style: const TextStyle(
+                    //     color: Colors.black54,
+                    //     fontSize: 15,
+                    //   ),
+                    // )
                   ],
                 )
               ],
             ),
-            SizedBox(
-              height: 5,
+            Row(
+              children: [
+                Icon(
+                  Icons.email_outlined,
+                  color: Colors.brown[300],
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  loggedInTutor.sustMail!,
+                  style: const TextStyle(
+                    color: Colors.black54,
+                    fontSize: 17,
+                  ),
+                )
+              ],
             ),
-            const Divider(
-              thickness: 1,
-              color: Colors.black26,
+            Row(
+              children: [
+                Icon(
+                  Icons.call_outlined,
+                  color: Colors.brown[300],
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  loggedInTutor.mobileno!,
+                  style: const TextStyle(
+                    // color: Color(),
+                    fontSize: 17,
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -94,6 +126,36 @@ class _TutorsProfileState extends State<LoggedInTutor> {
                     color: Colors.brown,
                   ),
                 )
+              ],
+            ),
+            const Divider(
+              thickness: 1,
+              color: Colors.black26,
+            ),
+            Row(
+              children: [
+                Text(loggedInTutor.dept!),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  'Registration no.',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.brown[400],
+                    fontSize: 17,
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(loggedInTutor.registrationNumber!),
+              ],
+            ),
+            Row(
+              children: [
+                Text(loggedInTutor.gender!),
               ],
             ),
           ],
