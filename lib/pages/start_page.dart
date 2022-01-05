@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tuitionmedia/parent_registration.dart';
 
 import '../parent_login.dart';
+import '../sustmailrefer_scene.dart';
 import '../tutor_login.dart';
 import '../tutor_registration.dart';
 
@@ -65,12 +65,12 @@ class StartPage extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const ParentRegistration(),
+                                          const SustMailReferenceScene(),
                                     ),
                                   );
                                 },
                                 child: Text(
-                                  'Sign up',
+                                  'Sign up as Parent',
                                   style: TextStyle(
                                     color: Colors.brown[600],
                                   ),
@@ -121,7 +121,7 @@ class StartPage extends StatelessWidget {
                                   );
                                 },
                                 child: Text(
-                                  'Sign up',
+                                  'Sign up as Tutor',
                                   style: TextStyle(
                                     color: Colors.brown[600],
                                   ),

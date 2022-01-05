@@ -45,6 +45,7 @@ class _LoggedInParentState extends State<LoggedInParent> {
     print('build');
 
     return Scaffold(
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

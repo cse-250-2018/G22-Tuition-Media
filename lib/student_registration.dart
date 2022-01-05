@@ -324,9 +324,8 @@ class _StudentRegistrationState extends State<StudentRegistration> {
                                       toastLength: Toast.LENGTH_LONG,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
                                       fontSize: 16.0);
+                                  Navigator.pop(context);
                                 }
                               },
                               style: ElevatedButton.styleFrom(
