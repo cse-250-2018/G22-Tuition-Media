@@ -20,4 +20,12 @@ Instructions :
 
 Handling database
 -----------------
--**[https://firebase.google.com/docs/flutter/setup?platform=ios]**
+-**See how to SetUp Firebase on your app .[https://firebase.google.com/docs/flutter/setup?platform=ios]**
+ - To get SHA key for windows :
+ 
+ - 1. For creating the keystore file 
+ - keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000
+
+ - 2. For viewing the SHA-1 key from the keystore file that we created 
+
+ - keytool -list -v -keystore "C:\Users\Shivansh Singh["Replace with your uername"]\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
