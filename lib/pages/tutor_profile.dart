@@ -183,7 +183,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                 Row(
                   children: [
                     Text(
-                      'Department: ',
+                      'Dept: ',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.brown[400],
