@@ -1,7 +1,7 @@
 Instructions :
 --------------
 
-- **Updating the extension**
+- **Adding/Updating the extension**
   - Click the Extensions button in the Side Bar.
   - If the Flutter extension is shown with an available update, click the update button and then the reload button.
   - Restart VS Code.
