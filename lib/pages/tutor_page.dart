@@ -34,7 +34,7 @@ class AppHomeState extends State<AppHome> {
         // backgroundColor: Colors.black,
         unselectedItemColor: Colors.grey[800],
         // selectedItemColor: Colors.white,
-        showUnselectedLabels: false,
+        // showUnselectedLabels: false,
         currentIndex: currentIndex,
         elevation: 15,
         onTap: (index) {

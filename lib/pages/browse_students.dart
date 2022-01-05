@@ -88,6 +88,12 @@ class BrowseStudents extends StatelessWidget {
                                       await FlutterPhoneDirectCaller.callNumber(
                                           number);
                                 },
+                                style: ElevatedButton.styleFrom(
+                                  textStyle: const TextStyle(fontSize: 18),
+                                  primary: const Color(0xFFFEEAE6), //background
+                                  onPrimary: Colors.brown[600], //foreground
+                                  elevation: 0,
+                                ),
                               ),
                               // Text(data.docs[index]['studentClass']),
                               onTap: () async {

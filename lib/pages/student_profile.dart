@@ -7,23 +7,25 @@ import 'package:tuitionmedia/model/tutor_model.dart';
 
 import 'browse_students.dart';
 
+//this class will show all students profile
+
 class StudentProfile extends StatefulWidget {
   final String uid;
 
   StudentProfile(this.uid);
 
   @override
-  State<StudentProfile> createState() => _TutorsProfileState();
+  State<StudentProfile> createState() => _StudentProfileState();
 }
 
-class _TutorsProfileState extends State<StudentProfile> {
+class _StudentProfileState extends State<StudentProfile> {
   User? user = FirebaseAuth.instance.currentUser;
   StudentModel loggedInUser = StudentModel();
 
   @override
   void initState() {
     super.initState();
-
+// set connection with firebase firestore
     FirebaseFirestore.instance
         .collection('students')
         .doc(widget.uid)
@@ -36,13 +38,9 @@ class _TutorsProfileState extends State<StudentProfile> {
 
   @override
   Widget build(BuildContext context) {
-    // final Stream<QuerySnapshot> tutor =
-    // FirebaseFirestore.instance.collection('tutors').doc();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.brown[900],
-        //omuk's profile
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -51,9 +49,11 @@ class _TutorsProfileState extends State<StudentProfile> {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
+
+                //added avatar icon
                 Row(
                   children: [
                     Container(
@@ -64,12 +64,14 @@ class _TutorsProfileState extends State<StudentProfile> {
                         color: Colors.brown[900],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
+
+                    //added students name here
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -83,60 +85,18 @@ class _TutorsProfileState extends State<StudentProfile> {
                         const SizedBox(
                           height: 7,
                         ),
-                        // Text(
-                        //   loggedInUser.sustMail!,
-                        //   style: const TextStyle(
-                        //     color: Colors.black54,
-                        //     fontSize: 15,
-                        //   ),
-                        // )
                       ],
                     )
                   ],
                 ),
-                Row(
-                  children: [
-                    // Icon(
-                    //   Icons.email_outlined,
-                    //   color: Colors.brown[300],
-                    // ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      loggedInUser.studentClass!,
-                      style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 17,
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    // Icon(
-                    //   Icons.call_outlined,
-                    //   color: Colors.brown[300],
-                    // ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      loggedInUser.medium!,
-                      style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 17,
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
+
+                const SizedBox(
                   height: 15,
                 ),
                 ElevatedButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(Icons.call),
                       Text(
                         'Call',
@@ -147,7 +107,7 @@ class _TutorsProfileState extends State<StudentProfile> {
                     ],
                   ),
                   onPressed: () async {
-                    //call feature
+                    //added call feature
                     var number =
                         '${loggedInUser.addMobileNo}'; //set the number here
                     bool? res =
@@ -161,15 +121,15 @@ class _TutorsProfileState extends State<StudentProfile> {
                         const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
                   ),
                 ),
-                Divider(),
-                SizedBox(
+
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text(
-                      'Tutor Info',
+                      'Student Info',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.brown,
@@ -181,44 +141,68 @@ class _TutorsProfileState extends State<StudentProfile> {
                   thickness: 1,
                   color: Colors.black26,
                 ),
+
+                //here we showed all data what we got from students at the time of registration
+
                 Row(
                   children: [
                     Text(
-                      '',
+                      'Class:',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.brown[400],
                         fontSize: 17,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.studentClass!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Medium:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.medium!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Student\'s Group:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
                       width: 20,
                     ),
                     Text(loggedInUser.group!),
                   ],
                 ),
-                SizedBox(
+
+                const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      'Registration no:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.brown[400],
-                        fontSize: 17,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    // Text(loggedInUser.registrationNumber!),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+
                 Row(
                   children: [
                     Text(
@@ -229,10 +213,105 @@ class _TutorsProfileState extends State<StudentProfile> {
                         fontSize: 17,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Text(loggedInUser.studentGender!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Subjects:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.subjects!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Tutoring days in a Week:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.tutoringDays!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Salary want to give:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.salary!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Students Address:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.location!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Other requirements:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.parentsDemand!),
                   ],
                 ),
               ],

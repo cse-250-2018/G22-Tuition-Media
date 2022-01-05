@@ -50,7 +50,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -63,10 +63,10 @@ class _TutorsProfileState extends State<TutorsProfile> {
                         color: Colors.brown[900],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Column(
@@ -99,7 +99,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                       Icons.email_outlined,
                       color: Colors.brown[300],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Text(
@@ -117,7 +117,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                       Icons.call_outlined,
                       color: Colors.brown[300],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Text(
@@ -129,13 +129,13 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 ElevatedButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(Icons.call),
                       Text(
                         'Call Tutor',
@@ -160,8 +160,8 @@ class _TutorsProfileState extends State<TutorsProfile> {
                         const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
                   ),
                 ),
-                Divider(),
-                SizedBox(
+                const Divider(),
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -190,13 +190,18 @@ class _TutorsProfileState extends State<TutorsProfile> {
                         fontSize: 17,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(loggedInUser.dept!),
+                    Text(
+                      loggedInUser.dept!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -209,13 +214,18 @@ class _TutorsProfileState extends State<TutorsProfile> {
                         fontSize: 17,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(loggedInUser.registrationNumber!),
+                    Text(
+                      loggedInUser.registrationNumber!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -228,10 +238,88 @@ class _TutorsProfileState extends State<TutorsProfile> {
                         fontSize: 17,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(loggedInUser.gender!),
+                    Text(
+                      loggedInUser.gender!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                //added location ,experience,group
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Group:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      loggedInUser.groupofTutor!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Experience:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      loggedInUser.experience!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Address:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      loggedInUser.tutorsAddress!,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ],
                 ),
               ],

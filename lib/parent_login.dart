@@ -27,7 +27,6 @@ class _ParentLoginState extends State<ParentLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[50],
       appBar: AppBar(
         backgroundColor: Colors.brown[900],
         title: const Text(
