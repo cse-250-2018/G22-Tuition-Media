@@ -38,11 +38,14 @@ class _VerifyScreenState extends State<VerifyScreen> {
     return const Scaffold(
       // backgroundColor: Colors.teal,
       body: Center(
-        child: Text(
-          'An email has been sent, please verify and come back',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Text(
+            'An email has been sent, please verify and come back',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

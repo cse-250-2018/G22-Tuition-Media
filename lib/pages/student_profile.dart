@@ -2,46 +2,45 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:tuitionmedia/model/student_model.dart';
 import 'package:tuitionmedia/model/tutor_model.dart';
 
 import 'browse_students.dart';
 
-class TutorsProfile extends StatefulWidget {
+//this class will show all students profile
+
+class StudentProfile extends StatefulWidget {
   final String uid;
 
-  TutorsProfile(this.uid);
+  StudentProfile(this.uid);
 
   @override
-  State<TutorsProfile> createState() => _TutorsProfileState();
+  State<StudentProfile> createState() => _StudentProfileState();
 }
 
-class _TutorsProfileState extends State<TutorsProfile> {
+class _StudentProfileState extends State<StudentProfile> {
   User? user = FirebaseAuth.instance.currentUser;
-  TutorModel loggedInUser = TutorModel();
+  StudentModel loggedInUser = StudentModel();
 
   @override
   void initState() {
     super.initState();
-
+// set connection with firebase firestore
     FirebaseFirestore.instance
-        .collection('tutors')
+        .collection('students')
         .doc(widget.uid)
         .get()
         .then((value) {
-      loggedInUser = TutorModel.fromMap(value.data());
+      loggedInUser = StudentModel.fromMap(value.data());
       setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // final Stream<QuerySnapshot> tutor =
-    // FirebaseFirestore.instance.collection('tutors').doc();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.brown[900],
-        //omuk's profile
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -53,6 +52,8 @@ class _TutorsProfileState extends State<TutorsProfile> {
                 const SizedBox(
                   height: 20,
                 ),
+
+                //added avatar icon
                 Row(
                   children: [
                     Container(
@@ -69,11 +70,13 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     const SizedBox(
                       height: 20,
                     ),
+
+                    //added students name here
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          loggedInUser.tutorName!,
+                          loggedInUser.studentName!,
                           style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 25,
@@ -82,53 +85,11 @@ class _TutorsProfileState extends State<TutorsProfile> {
                         const SizedBox(
                           height: 7,
                         ),
-                        // Text(
-                        //   loggedInUser.sustMail!,
-                        //   style: const TextStyle(
-                        //     color: Colors.black54,
-                        //     fontSize: 15,
-                        //   ),
-                        // )
                       ],
                     )
                   ],
                 ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.email_outlined,
-                      color: Colors.brown[300],
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      loggedInUser.sustMail!,
-                      style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 17,
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.call_outlined,
-                      color: Colors.brown[300],
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      loggedInUser.mobileno!,
-                      style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 17,
-                      ),
-                    )
-                  ],
-                ),
+
                 const SizedBox(
                   height: 15,
                 ),
@@ -138,7 +99,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     children: const [
                       Icon(Icons.call),
                       Text(
-                        'Call Tutor',
+                        'Call',
                         style: TextStyle(
                           fontSize: 18,
                         ),
@@ -146,9 +107,9 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     ],
                   ),
                   onPressed: () async {
-                    //call feature
+                    //added call feature
                     var number =
-                        '${loggedInUser.mobileno}'; //set the number here
+                        '${loggedInUser.addMobileNo}'; //set the number here
                     bool? res =
                         await FlutterPhoneDirectCaller.callNumber(number);
                   },
@@ -160,7 +121,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                         const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
                   ),
                 ),
-                const Divider(),
+
                 const SizedBox(
                   height: 20,
                 ),
@@ -168,7 +129,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Text(
-                      'Tutor Info',
+                      'Student Info',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.brown,
@@ -180,10 +141,13 @@ class _TutorsProfileState extends State<TutorsProfile> {
                   thickness: 1,
                   color: Colors.black26,
                 ),
+
+                //here we showed all data what we got from students at the time of registration
+
                 Row(
                   children: [
                     Text(
-                      'Dept: ',
+                      'Class:',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.brown[400],
@@ -193,12 +157,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Text(
-                      loggedInUser.dept!,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    Text(loggedInUser.studentClass!),
                   ],
                 ),
                 const SizedBox(
@@ -207,7 +166,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                 Row(
                   children: [
                     Text(
-                      'Registration no:',
+                      'Medium:',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.brown[400],
@@ -217,17 +176,33 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Text(
-                      loggedInUser.registrationNumber!,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    Text(loggedInUser.medium!),
                   ],
                 ),
                 const SizedBox(
                   height: 10,
                 ),
+                Row(
+                  children: [
+                    Text(
+                      'Student\'s Group:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.group!),
+                  ],
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
                 Row(
                   children: [
                     Text(
@@ -241,22 +216,16 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Text(
-                      loggedInUser.gender!,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    Text(loggedInUser.studentGender!),
                   ],
                 ),
-                //added location ,experience,group
                 const SizedBox(
                   height: 10,
                 ),
                 Row(
                   children: [
                     Text(
-                      'Group:',
+                      'Subjects:',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.brown[400],
@@ -266,12 +235,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Text(
-                      loggedInUser.groupofTutor!,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    Text(loggedInUser.subjects!),
                   ],
                 ),
                 const SizedBox(
@@ -280,7 +244,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                 Row(
                   children: [
                     Text(
-                      'Experience:',
+                      'Tutoring days in a Week:',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.brown[400],
@@ -290,12 +254,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     const SizedBox(
                       width: 20,
                     ),
-                    Text(
-                      loggedInUser.experience!,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    Text(loggedInUser.tutoringDays!),
                   ],
                 ),
                 const SizedBox(
@@ -304,7 +263,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                 Row(
                   children: [
                     Text(
-                      'Address:',
+                      'Salary want to give:',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.brown[400],
@@ -314,12 +273,45 @@ class _TutorsProfileState extends State<TutorsProfile> {
                     const SizedBox(
                       width: 20,
                     ),
+                    Text(loggedInUser.salary!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
                     Text(
-                      loggedInUser.tutorsAddress!,
-                      style: const TextStyle(
+                      'Students Address:',
+                      style: TextStyle(
                         fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
                       ),
                     ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.location!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Other requirements:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.brown[400],
+                        fontSize: 17,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(loggedInUser.parentsDemand!),
                   ],
                 ),
               ],

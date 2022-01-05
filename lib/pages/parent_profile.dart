@@ -7,6 +7,7 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:tuitionmedia/model/student_model.dart';
 import 'package:tuitionmedia/model/tutor_model.dart';
 import 'package:tuitionmedia/model/user_model.dart';
+import 'package:tuitionmedia/student_registration.dart';
 
 class LoggedInParent extends StatefulWidget {
   const LoggedInParent({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class LoggedInParent extends StatefulWidget {
 
 class _LoggedInParentState extends State<LoggedInParent> {
   User? user = FirebaseAuth.instance.currentUser;
-  
+
   UserModel loggedInUser = UserModel();
   List<StudentModel> std = [];
   String name = '';
@@ -52,7 +53,7 @@ class _LoggedInParentState extends State<LoggedInParent> {
         child: Column(
           children: [
             const SizedBox(
-              height: 20,
+              height: 110,
             ),
             Row(
               children: [
@@ -96,6 +97,35 @@ class _LoggedInParentState extends State<LoggedInParent> {
             const Divider(
               thickness: 1,
               color: Colors.black26,
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            ElevatedButton(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.person_add),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text('Add a Student'),
+                ],
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const StudentRegistration(),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 18),
+                  primary: Colors.brown, //background
+                  onPrimary: Colors.white, //foreground
+                  elevation: 0,
+                  padding: EdgeInsets.all(10)),
             ),
           ],
         ),

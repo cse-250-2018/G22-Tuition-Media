@@ -34,7 +34,7 @@ class AppHomeState extends State<AppHome> {
         // backgroundColor: Colors.black,
         unselectedItemColor: Colors.grey[800],
         // selectedItemColor: Colors.white,
-        showUnselectedLabels: false,
+        // showUnselectedLabels: false,
         currentIndex: currentIndex,
         elevation: 15,
         onTap: (index) {
@@ -45,7 +45,7 @@ class AppHomeState extends State<AppHome> {
         items: [
           const BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
-              label: 'Profile',
+              label: 'My Profile',
               backgroundColor: Colors.blueAccent),
           // ignore: prefer_const_constructors
           BottomNavigationBarItem(

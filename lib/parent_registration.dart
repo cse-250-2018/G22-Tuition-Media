@@ -121,34 +121,34 @@ class _ParentRegistrationState extends State<ParentRegistration> {
                         const SizedBox(
                           height: 30,
                         ),
-                        TextFormField(
-                          autofocus: false,
-                          controller: refferedsustmailController,
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              "Enter referred SUST mail";
-                            }
-                            if (!RegExp(
-                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                .hasMatch(value)) {
-                              return ("Please enter a valid SUST mail");
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            refferedsustmailController.text = value!;
-                            //debugPrint(emailController.text);
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.mail),
-                            hintText: 'Referred SUST Mail',
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                            ),
-                          ),
-                        ),
+                        // TextFormField(
+                        //   autofocus: false,
+                        //   controller: refferedsustmailController,
+                        //   keyboardType: TextInputType.emailAddress,
+                        //   validator: (value) {
+                        //     if (value!.isEmpty) {
+                        //       "Enter referred SUST mail";
+                        //     }
+                        //     if (!RegExp(
+                        //             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                        //         .hasMatch(value)) {
+                        //       return ("Please enter a valid SUST mail");
+                        //     }
+                        //     return null;
+                        //   },
+                        //   onSaved: (value) {
+                        //     refferedsustmailController.text = value!;
+                        //     //debugPrint(emailController.text);
+                        //   },
+                        //   decoration: const InputDecoration(
+                        //     prefixIcon: Icon(Icons.mail),
+                        //     hintText: 'Referred SUST Mail',
+                        //     border: OutlineInputBorder(
+                        //       borderRadius:
+                        //           BorderRadius.all(Radius.circular(10.0)),
+                        //     ),
+                        //   ),
+                        // ),
                         const SizedBox(
                           height: 30,
                         ),
@@ -277,7 +277,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
 
   void signUp(String email, String password) async {
     try {
-      if (_formkey.currentState()!.validate()) {
+      if (_formkey.currentState!.validate()) {
         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) => {postDetailsFirestore()})

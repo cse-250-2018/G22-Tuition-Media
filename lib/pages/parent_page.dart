@@ -20,7 +20,7 @@ class AppHomeState extends State<ParentPage> {
   final screens = [
     LoggedInParent(),
     BrowseTutorForParent(),
-    StudentRegistration(),
+    BrowseStudents(),
   ];
   AppHomeState();
 
@@ -35,7 +35,7 @@ class AppHomeState extends State<ParentPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey[800],
-        showUnselectedLabels: false,
+        // showUnselectedLabels: false,
         currentIndex: currentIndex,
         elevation: 15,
         onTap: (index) {
@@ -49,12 +49,12 @@ class AppHomeState extends State<ParentPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
-            label: 'T&A',
+            icon: Icon(Icons.people_alt_outlined),
+            label: 'See Tutors',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_add),
-            label: 'Add Student',
+            icon: Icon(Icons.list),
+            label: 'All Students',
           ),
         ],
       ),

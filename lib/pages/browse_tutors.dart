@@ -10,53 +10,73 @@ class BrowseTutors extends StatelessWidget {
     final Stream<QuerySnapshot> users =
         FirebaseFirestore.instance.collection('tutors').snapshots();
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Stack(
-          children: [
-            StreamBuilder<QuerySnapshot>(
-              stream: users,
-              builder: (
-                BuildContext context,
-                AsyncSnapshot<QuerySnapshot> snapshot,
-              ) {
-                if (snapshot.hasError) {
-                  return const Center(child: Text("Something went wrong"));
-                } else if (snapshot.connectionState ==
-                    ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                } else {
-                  final data = snapshot.requireData;
-                  return ListView.builder(
-                    //to avoid error added next two line
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: data.size,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        elevation: 5,
-                        child: ListTile(
-                            title: Text(data.docs[index]['tutorName']),
-                            subtitle: Text(data.docs[index]['dept']),
-                            onTap: () async {
-                              final uid3 = data.docs[index]['uid2'];
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => TutorsProfile(uid3)),
-                              );
-                            }),
-                      );
-                    },
-                  );
-                }
-              },
-            )
-          ],
+    return Column(
+      children: [
+        const SizedBox(
+          height: 15,
         ),
-      ),
+        const Text(
+          'Available Tutors',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 23,
+            color: Colors.brown,
+          ),
+        ),
+        const Divider(
+          thickness: 1,
+        ),
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Stack(
+              children: [
+                StreamBuilder<QuerySnapshot>(
+                  stream: users,
+                  builder: (
+                    BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot,
+                  ) {
+                    if (snapshot.hasError) {
+                      return const Center(child: Text("Something went wrong"));
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else {
+                      final data = snapshot.requireData;
+                      return ListView.builder(
+                        //to avoid error added next two line
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: data.size,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            elevation: 5,
+                            child: ListTile(
+                              title: Text(data.docs[index]['tutorName']),
+                              subtitle: Text(data.docs[index]['dept']),
+                              onTap: () async {
+                                final uid3 = data.docs[index]['uid2'];
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          TutorsProfile(uid3)),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  },
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

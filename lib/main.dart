@@ -50,20 +50,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
- class SplashScreen extends StatefulWidget {
-   const SplashScreen({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
+<<<<<<< HEAD
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+=======
 
 
    @override
    _SplashScreenState createState() => _SplashScreenState();
+>>>>>>> ccd90feb1b4c282ffb65d8f2f96c5ccd4cbad6d8
 }
 
 class _SplashScreenState extends State<SplashScreen> {
   void startTimer() {
     Timer(const Duration(seconds: 2), () {
+<<<<<<< HEAD
+      Navigator.of(context).pushReplacementNamed('startPage');
+=======
       Navigator.of(context).pushReplacementNamed('initialscene');
 
+>>>>>>> ccd90feb1b4c282ffb65d8f2f96c5ccd4cbad6d8
     });
   }
 
