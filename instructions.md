@@ -3,6 +3,7 @@ Instructions :
 
 - **Adding/Updating the extension**
   - Click the Extensions button in the Side Bar.
+  - Next time if::
   - Install both flutter and Dart extension.
   - If the Flutter extension is shown with an available update, click the update button and then the reload button.
   - If the Dart extension is shown with an available update, click the update button and then the reload button.
