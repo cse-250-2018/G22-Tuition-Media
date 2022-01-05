@@ -42,5 +42,8 @@ Handling database
   - *check vesion related problems,one versions code might not run on other version of dart*
   - To stay up to date with flutter version you can run  *'flutter pub upgrade'* command.
   - If any error occurs in Gradle, one might not find what's the problem. then you should open another folder    for this project and copy your assets, pubspec.yaml file and codes there.
-  - 
+  
+  - One might face a problem if he/she uses one email account for registering more than one account. 
+    -There is an option to resolve this :: one have to turn on *Multiple accounts per email address* in signin method of Authentication
 
+![Screenshot 2022-01-05 235326](https://user-images.githubusercontent.com/52748765/148265223-6cb7390f-6035-44e7-a22f-70f71540d542.png)
