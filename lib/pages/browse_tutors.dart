@@ -37,17 +37,18 @@ class BrowseTutors extends StatelessWidget {
                       return Card(
                         elevation: 5,
                         child: ListTile(
-                            title: Text(data.docs[index]['tutorName']),
-                            subtitle: Text(data.docs[index]['dept']),
-                            onTap: () async {
-                              final uid3 = data.docs[index]['uid2'];
+                          title: Text(data.docs[index]['tutorName']),
+                          subtitle: Text(data.docs[index]['dept']),
+                          onTap: () async {
+                            final uid3 = data.docs[index]['uid2'];
 
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => TutorsProfile(uid3)),
-                              );
-                            }),
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TutorsProfile(uid3)),
+                            );
+                          },
+                        ),
                       );
                     },
                   );

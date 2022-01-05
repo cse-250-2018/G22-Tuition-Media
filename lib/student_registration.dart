@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/model/user_model.dart';
+import 'package:tuitionmedia/pages/browse_tutor_for_parent.dart';
 
 import 'DropdownItems/days_per_week.dart';
 import 'DropdownItems/gender_list.dart';
@@ -36,7 +37,6 @@ class _StudentRegistrationState extends State<StudentRegistration> {
   final locationController = TextEditingController();
   final parentsDemandController = TextEditingController();
   final studentmobileNoController = TextEditingController();
- 
 
   @override
   void initState() {
@@ -419,6 +419,10 @@ class _StudentRegistrationState extends State<StudentRegistration> {
     } catch (e) {
       Fluttertoast.showToast(msg: "Error Occurred");
     }
+    Navigator.pushAndRemoveUntil(
+        (context),
+        MaterialPageRoute(builder: (context) => const BrowseTutorForParent()),
+        (route) => false);
 
     //Fluttertoast.showToast(msg: "account created successfully");
   }

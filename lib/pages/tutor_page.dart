@@ -45,7 +45,7 @@ class AppHomeState extends State<AppHome> {
         items: [
           const BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
-              label: 'Profile',
+              label: 'My Profile',
               backgroundColor: Colors.blueAccent),
           // ignore: prefer_const_constructors
           BottomNavigationBarItem(

@@ -275,7 +275,7 @@ class _ParentRegistrationState extends State<ParentRegistration> {
 
   void signUp(String email, String password) async {
     try {
-      if (_formkey.currentState()!.validate()) {
+      if (_formkey.currentState!.validate()) {
         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) => {postDetailsFirestore()})

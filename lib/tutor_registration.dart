@@ -42,9 +42,9 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   final tutorConfirmpasswordController = TextEditingController();
   final genderController = TextEditingController();
   final tutorsMobilenoController = TextEditingController();
-   //new
-  final experienceController=TextEditingController();
-  final tutorsAddressController=TextEditingController();
+  //new
+  final experienceController = TextEditingController();
+  final tutorsAddressController = TextEditingController();
 
   final genders = ['Male', 'Female'];
 
@@ -384,7 +384,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   }
 
   void signUp2(String email, String password) async {
-    if (_formkey.currentState()!.validate()) {
+    if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {postDetailsFirestoreForTutor()})
@@ -419,9 +419,9 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     tutorModel.registrationNumber = registrationNoController.text;
     tutorModel.gender = _selectedGender;
     tutorModel.mobileno = tutorsMobilenoController.text;
-    tutorModel.groupofTutor=_selectedGroupbytutor;
-    tutorModel.experience=experienceController.text;
-    tutorModel.tutorsAddress=tutorsAddressController.text;
+    tutorModel.groupofTutor = _selectedGroupbytutor;
+    tutorModel.experience = experienceController.text;
+    tutorModel.tutorsAddress = tutorsAddressController.text;
 
     await firebaseFirestore
         .collection("tutors")
