@@ -44,7 +44,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
   final tutorsMobilenoController = TextEditingController();
    //new
   final experienceController=TextEditingController();
-  final groupofTutorController=TextEditingController();
+  final tutorsAddressController=TextEditingController();
 
   final genders = ['Male', 'Female'];
 
@@ -189,7 +189,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           },
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.mode_edit_outlined),
-                            hintText: 'experience',
+                            hintText: 'Experience',
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
@@ -229,6 +229,26 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.call_rounded),
                             hintText: 'Mobile number',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+
+                        TextFormField(
+                          controller: experienceController,
+                          keyboardType: TextInputType.name,
+                          validator: (value) {},
+                          onSaved: (value) {
+                            registrationNoController.text = value!;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(Icons.location_city_outlined),
+                            hintText: 'Tutors Current Address',
                             border: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.0)),
@@ -401,6 +421,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
     tutorModel.mobileno = tutorsMobilenoController.text;
     tutorModel.groupofTutor=_selectedGroupbytutor;
     tutorModel.experience=experienceController.text;
+    tutorModel.tutorsAddress=tutorsAddressController.text;
 
     await firebaseFirestore
         .collection("tutors")

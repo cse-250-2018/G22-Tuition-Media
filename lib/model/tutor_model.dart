@@ -9,6 +9,7 @@ class TutorModel {
   String? subjectList;
   String?experience;
   String?groupofTutor;
+  String?tutorsAddress;
 
   TutorModel(
       {this.uid2,
@@ -20,7 +21,8 @@ class TutorModel {
       this.subjectList,
       this.mobileno,
       this.experience,
-      this.groupofTutor});
+      this.groupofTutor,
+      this.tutorsAddress});
 
   //receiving data from server
   factory TutorModel.fromMap(map) {
@@ -35,6 +37,7 @@ class TutorModel {
         mobileno: map['mobileno'],
         experience: map['experience'],
         groupofTutor: map['groupofTutor'],
+        tutorsAddress: map['tutorsAddress'],
         );
 
   }
@@ -52,6 +55,7 @@ class TutorModel {
       'subjectList': subjectList,
       'experience':experience,
       'groupofTutor':groupofTutor,
+      'tutorsAddress':tutorsAddress,
     };
   }
 }
