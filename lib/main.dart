@@ -16,11 +16,14 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+
   static const String _title = 'SUST Tutors';
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
         title: _title,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -50,6 +53,8 @@ class MyApp extends StatelessWidget {
  class SplashScreen extends StatefulWidget {
    const SplashScreen({Key? key}) : super(key: key);
 
+
+
    @override
    _SplashScreenState createState() => _SplashScreenState();
 }
@@ -58,6 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void startTimer() {
     Timer(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacementNamed('initialscene');
+
     });
   }
 
@@ -84,5 +90,6 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+
   }
 }

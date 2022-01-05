@@ -343,9 +343,11 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                               onPressed: () {
                                 try {
                                   Fluttertoast.showToast(
+
                                       msg: "Please wait for a while",
                                       toastLength: Toast.LENGTH_LONG,
                                       timeInSecForIosWeb: 1,
+
                                       fontSize: 16.0);
                                   signUp2(sustMailController.text,
                                       tutorPasswordController.text);

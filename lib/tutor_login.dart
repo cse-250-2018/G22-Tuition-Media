@@ -82,6 +82,7 @@ class _TutorLoginState extends State<TutorLogin> {
                           border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10.0)),
+
                           ),
                         ),
                       ),
@@ -142,6 +143,7 @@ class _TutorLoginState extends State<TutorLogin> {
                               // onPrimary: Colors.white, //foreground
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 25, vertical: 10),
+
                             ),
                             child: (const Text('Log In as Tutor')),
                           ),

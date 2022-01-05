@@ -8,7 +8,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tuitionmedia/homepage.dart';
 import 'package:tuitionmedia/model/user_model.dart';
 import 'package:tuitionmedia/parent_login.dart';
+
 import 'package:tuitionmedia/verify.dart';
+
 
 class ParentRegistration extends StatefulWidget {
   const ParentRegistration({Key? key}) : super(key: key);
