@@ -3,9 +3,11 @@ Instructions :
 
 - **Adding/Updating the extension**
   - Click the Extensions button in the Side Bar.
+  - Install both flutter and Dart extension.
   - If the Flutter extension is shown with an available update, click the update button and then the reload button.
+  - If the Dart extension is shown with an available update, click the update button and then the reload button.
   - Restart VS Code.
-  - 
+  
 - **Creating Project**
   - Open the Command Palette (Ctrl+Shift+P ) for windows,(Cmd+Shift+P on macOS).
   - Select the Flutter: New Project command and press Enter.
