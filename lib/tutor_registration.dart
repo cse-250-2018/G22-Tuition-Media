@@ -188,7 +188,7 @@ class _TutorRegistrationState extends State<TutorRegistration> {
                             registrationNoController.text = value!;
                           },
                           decoration: const InputDecoration(
-                            //prefixIcon: Icon(Icons.call_rounded),
+                            prefixIcon: Icon(Icons.mode_edit_outlined),
                             hintText: 'experience',
                             border: OutlineInputBorder(
                               borderRadius:
