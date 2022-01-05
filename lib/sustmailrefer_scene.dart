@@ -137,7 +137,7 @@ class _SustMailReferenceSceneState extends State<SustMailReferenceScene> {
   //did signup using email,password and all other constrain
   void signUp(String email, String password) async {
     try {
-      if (_formkey.currentState!.validate()) {
+      if (_formkey.currentState()!.validate()) {
         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) => {postDetailsFirestore()})

@@ -159,7 +159,7 @@ class _ParentLoginState extends State<ParentLogin> {
 
   void signIn(String email, String password) async {
     try {
-      if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+      if (_formKey.currentState != null && _formKey.currentState()!.validate()) {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
