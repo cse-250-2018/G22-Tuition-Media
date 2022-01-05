@@ -32,6 +32,23 @@ SL | Learning Task | Description | Status | Comment
 2 | Database | Firebase Basics | ![](https://img.shields.io/badge/Firebase-May%2028-orange) | 2018331004
 3 | Java | Java as Core Language | ![](https://img.shields.io/badge/Java-Completed-green)
 
+Used Technologies
+-----------------
+- We have used dart language for this App and developed it on flutter.
+- We have used firebase for handing data.
+
+Implemented Features
+---------------------
+- ** We have created 3 types of account**
+ - For Parents
+ - for Tutors
+ - And Students account under parents account
+- ** We have verified both Sustmail and Gmail by sending a verification link**
+
+UnImplemented Features
+----------------------
+tried to add 
+
 Acknowledgement
 ---------------
 - **Enamul Hassan Sir,Assistant Professor** 
