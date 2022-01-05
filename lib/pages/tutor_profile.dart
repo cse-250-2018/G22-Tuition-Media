@@ -121,7 +121,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                   Text(
                     loggedInUser.mobileno!,
                     style: const TextStyle(
-                      // color: Color(),
+                      color: Colors.black54,
                       fontSize: 17,
                     ),
                   )
@@ -156,6 +156,7 @@ class _TutorsProfileState extends State<TutorsProfile> {
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                 ),
               ),
+              Divider(),
               SizedBox(
                 height: 20,
               ),
