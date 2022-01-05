@@ -50,3 +50,6 @@ Handling database
     -There is an option to resolve this :: one have to Allow *Multiple accounts per email address* in signin method of Authentication
 
 ![Screenshot 2022-01-05 235326](https://user-images.githubusercontent.com/52748765/148265223-6cb7390f-6035-44e7-a22f-70f71540d542.png)
+
+
+- **If anything more needed search in on goolge and Flutter have an excellent documentation**
