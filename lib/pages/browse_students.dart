@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -72,13 +74,13 @@ class BrowseStudents extends StatelessWidget {
                                   ],
                                 ),
                                 isThreeLine: true,
-                                trailing: const ElevatedButton(
-                                  child: Text('Call'),
+                                trailing: ElevatedButton(
+                                  child: Icon(Icons.call),
+                                  // ignore: avoid_print
                                   onPressed: () async {
                                     //call feature
                                     var number =
-                                        '${data.docs[index]['mobileno']}'; //set the number here
-                                    // ignore: unused_local_variable
+                                        '${data.docs[index]['addMobileNo']}'; //set the number here
                                     bool? res = await FlutterPhoneDirectCaller
                                         .callNumber(number);
                                   },
